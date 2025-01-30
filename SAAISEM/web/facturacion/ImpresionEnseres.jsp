@@ -1,0 +1,516 @@
+<%-- 
+    Document   : ImpresionEnseres
+    Created on : 14/04/2015, 12:58:35 PM
+    Author     : Americo
+--%>
+
+<%@page import="javax.print.PrintServiceLookup"%>
+<%@page import="javax.print.PrintService"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="conn.*" %>
+<!DOCTYPE html>
+<%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyyMMddhhmmss"); %>
+<%java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
+<%java.text.DateFormat df3 = new java.text.SimpleDateFormat("dd/MM/yyyy"); %>
+<%
+
+    HttpSession sesion = request.getSession();
+    String usua = "";
+    String tipo = "";
+    if (sesion.getAttribute("nombre") != null) {
+        usua = (String) sesion.getAttribute("nombre");
+        tipo = (String) sesion.getAttribute("Tipo");
+    } else {
+        response.sendRedirect("index.jsp");
+    }
+    ConectionDB con = new ConectionDB();
+
+    String fecha_ini = "", fecha_fin = "", folio1 = "", folio2 = "", radio = "", unidad = "", Proyecto = "";
+    try {
+        fecha_ini = request.getParameter("fecha_ini");
+        fecha_fin = request.getParameter("fecha_fin");
+        folio1 = request.getParameter("folio1");
+        folio2 = request.getParameter("folio2");
+        radio = request.getParameter("radio");
+        unidad = request.getParameter("SelectUnidad");
+        Proyecto = request.getParameter("Proyecto");
+    } catch (Exception e) {
+
+    }
+    if (fecha_ini == null) {
+        fecha_ini = "";
+    }
+    if (fecha_fin == null) {
+        fecha_fin = "";
+    }
+    if (folio1 == null) {
+        folio1 = "";
+    }
+    if (folio2 == null) {
+        folio2 = "";
+    }
+    if (unidad == null) {
+        unidad = "";
+    }
+
+    if (unidad.equals("--Seleccione--")) {
+        unidad = "";
+    }
+    if (Proyecto == null) {
+        Proyecto = "0";
+    }
+%>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Estilos CSS -->
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/cupertino/jquery-ui-1.10.3.custom.css" />
+        <link href="../css/navbar-fixed-top.css" rel="stylesheet">
+        <link href="../css/datepicker3.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.css">
+        <link href="../css/select2.css" rel="stylesheet" type="text/css"/>
+        <!---->
+        <title>SIE Sistema de Ingreso de Entradas</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>SIALSS_CTRL</h1>
+            <h4>SISTEMA INTEGRAL DE ADMINISTRACIÓN Y LOGÍSTICA PARA SERVICIOS DE SALUD</h4>
+
+            <%@include file="../jspf/menuPrincipal.jspf" %>
+
+            <div class="panel-heading">
+                <h3 class="panel-title">Imprimir Múltiples Remisiones Enseres</h3>
+            </div>
+            <form action="ImpresionEnseres.jsp" method="post">
+                <div class="panel-footer">
+                    <div class="row">
+                        <label class="control-label col-sm-1" for="fecha_ini">Unidad</label>
+                        <div class="col-sm-5">
+                            <select name="SelectUnidad" id="SelectUnidad" class="form-control">
+                                <option>--Seleccione--</option>
+                                <%
+                                    try {
+                                        con.conectar();
+                                        ResultSet Unidad = con.consulta("SELECT U.F_ClaCli, CONCAT( U.F_ClaCli, ' [', F_NomCli, ']' ) AS F_NomCli FROM tb_uniatn U INNER JOIN tb_enseresfactura E ON U.F_ClaCli = E.F_ClaCli GROUP BY U.F_ClaCli;");
+                                        while (Unidad.next()) {
+                                %>
+                                <option value="<%=Unidad.getString(1)%>"><%=Unidad.getString(2)%></option>
+                                <%
+                                        }
+                                        con.cierraConexion();
+                                    } catch (Exception e) {
+                                    }
+                                %>
+                            </select>
+                        </div>
+                        <label class="control-label col-sm-1" for="fecha_ini">Proyecto</label>
+                        <div class="col-sm-2">
+                            <select name="Proyecto" id="Proyecto" class="form-control">
+                                <option value="0">--Seleccione--</option>
+                                <%
+                                    try {
+                                        con.conectar();
+                                        ResultSet Unidad = con.consulta("SELECT * FROM tb_proyectos;");
+                                        while (Unidad.next()) {
+                                %>
+                                <option value="<%=Unidad.getString(1)%>"><%=Unidad.getString(2)%></option>
+                                <%
+                                        }
+                                        con.cierraConexion();
+                                    } catch (Exception e) {
+                                    }
+                                %>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <label class="control-label col-sm-1" for="fecha_ini">Folios</label>
+                        <div class="col-lg-1">
+                            <input class="form-control" id="folio1" name="folio1" type="text" value="" onchange="habilitar(this.value);" />
+                        </div>
+                        <div class="col-lg-1">
+                            <input class="form-control" id="folio2" name="folio2" type="text" value="" onchange="habilitar(this.value);"/>
+                        </div>
+
+                        <label class="control-label col-sm-1" for="fecha_ini">Fechas</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="fecha_ini" name="fecha_ini" type="date" onchange="habilitar(this.value);"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="fecha_fin" name="fecha_fin" type="date" onchange="habilitar(this.value);"/>
+                        </div>
+                    </div>   
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <button class="btn btn-block btn-primary" id="btn_capturar" onclick="return confirma();">MOSTRAR&nbsp;<label class="glyphicon glyphicon-search"></label></button>                        
+                    </div>
+                </div>  
+            </form>
+            <%
+                int Contar = 0;
+                try {
+                    con.conectar();
+                    try {
+                        String QUni = "", QFolio = "", QFecha = "", Query = "";
+                        int ban = 0, ban2 = 0, ban3 = 0;
+                        if (unidad != "") {
+                            ban = 1;
+                        }
+                        if (folio1 != "" && folio2 != "") {
+                            ban2 = 1;
+                        }
+                        if (fecha_ini != "" && fecha_fin != "") {
+                            ban3 = 1;
+                        }
+                        if (ban == 1) {
+                            QUni = " WHERE F_ClaCli = '" + unidad + "' ";
+                        }
+                        if (ban2 == 1) {
+                            if (ban == 0) {
+                                QFolio = " WHERE F_Folio between '" + folio1 + "' and '" + folio2 + "' ";
+                            } else {
+                                QFolio = " AND F_Folio between '" + folio1 + "' and '" + folio2 + "' ";
+                            }
+                        }
+
+                        if (ban3 == 1) {
+                            if (ban == 0 && ban2 == 0) {
+                                QFecha = " WHERE F_FecEnt between '" + fecha_ini + "' and '" + fecha_fin + "' ";
+                            } else {
+                                QFecha = " AND F_FecEnt between '" + fecha_ini + "' and '" + fecha_fin + "' ";
+                            }
+                        }
+
+                        Query = QUni + QFolio + QFecha;
+                        if (Query != "") {
+
+                        } else {
+                            Query = " Where F_Folio=0 ";
+                        }
+                        System.out.println("Query " + Query);
+                        ResultSet rset = con.consulta("SELECT count(F_Folio) FROM tb_enseresfactura " + Query + " and F_Sts='A';");
+                        if (rset.next()) {
+                            Contar = rset.getInt(1);
+                        }
+                    } catch (Exception e) {
+
+                    }
+                    con.cierraConexion();
+                } catch (Exception e) {
+
+                }
+
+            %>
+            <form action="../Facturacion" method="post" id="formCambioFechas">
+                <%                    if (Contar > 0) {
+                %>
+                <div class="row">
+                    <input class="form-control" id="unidad1" name="unidad1" type="hidden" value="<%=unidad%>" />
+                    <input class="form-control" id="radio1" name="radio1" type="hidden" value="<%=radio%>" />
+                    <input class="form-control" id="foio11" name="folio11" type="hidden" value="<%=folio1%>" />
+                    <input class="form-control" id="folio21" name="folio21" type="hidden" value="<%=folio2%>" />
+                    <input class="form-control" id="fecha_ini1" name="fecha_ini1" type="hidden" value="<%=fecha_ini%>" />
+                    <input class="form-control" id="fecha_fin1" name="fecha_fin1" type="hidden" value="<%=fecha_fin%>" />
+                    <input class="form-control" id="Proyecto1" name="Proyecto1" type="hidden" value="<%=Proyecto%>" />
+                    <div class="row">
+                        <label class="control-label col-sm-2" for="imprera">Seleccione Impresora</label>
+                        <div class="col-sm-2 col-sm-2">                       
+                            <select id="impresora" name="impresora">
+                                <option value="">--Seleccione Impresora--</option>
+                                <%
+                                    String Nom = "";
+                                    PrintService[] impresoras = PrintServiceLookup.lookupPrintServices(null, null);
+                                    for (PrintService printService : impresoras) {
+                                        Nom = printService.getName();
+                                        //System.out.println("impresora" + Nom);                            
+%>
+                                <option value="<%=Nom%>"><%=Nom%></option>                            
+                                <%}%>
+                            </select>                        
+                        </div>
+                        <label class="control-label col-sm-2 col-sm-offset-1" for="imprera">No. Copias</label>
+                        <div class="col-sm-1">                       
+                            <select id="Copy" name="Copy">
+                                <option value="">-Copias-</option>                            
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>                        
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2 col-sm-offset-1">                       
+                            <button type="submit" class="btn btn-info btn-block" id="btnImpMult" name="accion" value="impRemisMultplesEnseres" >Impresiones Múltiples</button>
+                        </div>
+                        <!--div class="col-sm-2">                       
+                            <button type="submit" class="btn btn-info btn-block" id="btnImpMult" name="accion" value="impRemisMultplesSurtido" >Impresiones Surtido</button>
+                        </div-->
+                        <!--div class="col-sm-2">                       
+                            <button type="submit" class="btn btn-primary btn-block" id="btnImpMult" name="accion" value="ImpRelacion" >Imprime Relación</button>
+                        </div>    
+                        <div class="col-sm-2">                      
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalCambioFecha" id="btnRecalendarizar" >Recalendarizar</button>
+                        </div>
+                        <div class="col-sm-2"> 
+                            <a type="button" class="btn btn-info btn-block" href="../reportes/gnrFoliosImp.jsp?Unidad=<%=unidad%>&Folio1=<%=folio1%>&Folio2=<%=folio2%>&Fec1=<%=fecha_ini%>&Fec2=<%=fecha_fin%>&Proyecto=<%=Proyecto%>" >Exportar</a>
+                        </div-->
+                    </div>
+                </div>
+                <%}%>
+
+
+                <div>
+                    <input class="hidden" name="accion" value="recalendarizarRemis"  />
+                    <input class="hidden" id="F_FecEnt" name="F_FecEnt" value=""  />
+                    <div class="panel panel-primary">
+                        <div class="panel-body table-responsive">
+                            <div style="width:100%; height:400px; overflow:auto;">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>No. Folio</td>
+                                            <td>Punto de Entrega</td>
+                                            <td>Proyecto Unidad</td>
+                                            <td>Fecha de Entrega</td>
+                                            <td>Factura</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            try {
+                                                con.conectar();
+                                                try {
+                                                    String QUni = "", QFolio = "", QFecha = "", Query = "", AND = "";
+                                                    int ban = 0, ban2 = 0, ban3 = 0;
+                                                    if (Proyecto.equals("0")) {
+                                                        AND = "";
+                                                    } else {
+                                                        AND = " AND f.F_Proyecto = '" + Proyecto + "' ";
+                                                    }
+                                                    if (unidad != "") {
+                                                        ban = 1;
+                                                    }
+                                                    if (folio1 != "" && folio2 != "") {
+                                                        ban2 = 1;
+                                                    }
+                                                    if (fecha_ini != "" && fecha_fin != "") {
+                                                        ban3 = 1;
+                                                    }
+                                                    if (ban == 1) {
+                                                        QUni = " F.F_ClaCli = '" + unidad + "' ";
+                                                    }
+                                                    if (ban2 == 1) {
+                                                        if (ban == 0) {
+                                                            QFolio = " F_Folio between '" + folio1 + "' and '" + folio2 + "' ";
+                                                        } else {
+                                                            QFolio = " AND F_Folio between '" + folio1 + "' and '" + folio2 + "' ";
+                                                        }
+                                                    }
+                                                    if (ban3 == 1) {
+                                                        if (ban == 0 && ban2 == 0) {
+                                                            QFecha = " F_FecEnt between '" + fecha_ini + "' and '" + fecha_fin + "' ";
+                                                        } else {
+                                                            QFecha = " AND F_FecEnt between '" + fecha_ini + "' and '" + fecha_fin + "' ";
+                                                        }
+                                                    }
+
+                                                    Query = QUni + QFolio + QFecha;
+                                                    //ResultSet rset = con.consulta("SELECT F.F_Folio,F.F_ClaCli,U.F_NomCli,DATE_FORMAT(F.F_FecApl,'%d/%m/%Y') AS F_FechaCaptura,SUM(F.F_Monto) AS F_Costo,DATE_FORMAT(F.F_FecEnt,'%d/%m/%Y') AS F_FecEnt, O.F_Tipo, O.F_Req FROM tb_enseresfactura F, tb_uniatn U, tb_obserfact O, tb_fecharuta FR where FR.F_ClaUni = U.F_ClaCli and  F.F_Folio=O.F_IdFact AND F.F_ClaCli=U.F_ClaCli and " + UsuaJuris + " "+Query+" GROUP BY F.F_Folio ORDER BY F.F_Folio+0;");
+                                                    ResultSet rset = con.consulta("SELECT CONCAT( f.F_Folio, '-', f.F_Proyecto ) AS F_Folio, f.F_ClaCli, CONCAT(f.F_ClaCli, ' - ', F_NomCli) AS F_NomCli, DATE_FORMAT(F_FechaCaptura, '%d/%m/%Y') AS F_FecApl, DATE_FORMAT(F_FechaEntrega, '%d/%m/%Y') AS F_FecEnt, F_Sts, p.F_DesProy, f.F_Folio AS documento, ps.F_DesProy AS F_DesProyFact FROM tb_enseresfactura f INNER JOIN tb_uniatn u ON f.F_ClaCli = u.F_ClaCli INNER JOIN tb_proyectos p ON u.F_Proyecto = p.F_Id INNER JOIN tb_proyectos ps ON f.F_Proyecto=ps.F_Id WHERE " + Query + " and F_Sts='A' " + AND + " GROUP BY f.F_Folio,f.F_ClaCli,F_Sts,f.F_Proyecto ORDER BY F_Folio+0;");
+                                                    while (rset.next()) {
+
+                                        %>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="checkRemis" checked="true" onchange="activarBtnReCal();" value="<%=rset.getString(1)%>">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td><%=rset.getString(8)%></td>
+                                            <td><%=rset.getString(3)%></td>
+                                            <td><%=rset.getString(7)%></td>
+                                            <td><%=rset.getString("F_FecEnt")%></td>
+                                            <td><%=rset.getString(9)%></td>
+                                        </tr>
+                                        <%
+                                                    }
+                                                } catch (Exception e) {
+
+                                                }
+                                                con.cierraConexion();
+                                            } catch (Exception e) {
+
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalCambioFecha" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <div class="row">
+                                <h4 class="col-sm-12">Cambiar Fecha</h4>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="modal-title" id="myModalLabel">Seleccionar fecha:</h4>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="date" class="form-control" required name="" id="ModalFecha" />
+                                </div>
+                            </div>
+                            <div style="display: none;" class="text-center" id="Loader">
+                                <img src="imagenes/ajax-loader-1.gif" height="150" />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" onclick="return confirmaModal();" name="accion" value="recalendarizarRemis">Recalendarizar</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+
+        <%@include file="../jspf/piePagina.jspf" %>
+        <!-- 
+        ================================================== -->
+        <!-- Se coloca al final del documento para que cargue mas rapido -->
+        <!-- Se debe de seguir ese orden al momento de llamar los JS -->
+        <script src="../js/jquery-1.9.1.js"></script>
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+        <script src="../js/bootstrap-datepicker.js"></script>
+        <script src="../js/jquery.dataTables.js"></script>
+        <script src="../js/dataTables.bootstrap.js"></script>
+        <script src="../js/select2.js" type="text/javascript"></script>
+        <script>
+                                    $(document).ready(function () {
+                                        $("#SelectUnidad").select2();
+                                        $('#datosCompras').dataTable();
+                                        $("#fecha").datepicker();
+                                        $("#fecha").datepicker('option', {dateFormat: 'dd/mm/yy'});
+
+                                        //$('#btnRecalendarizar').attr('disabled', true);
+                                        //$('#btnImpMult').attr('disabled', true);
+                                    });
+
+                                    /*function activarBtnReCal() {
+                                     $('#btnRecalendarizar').attr('disabled', false);
+                                     $('#btnImpMult').attr('disabled', false);
+                                     }*/
+
+                                    function confirmaModal() {
+                                        var valida = confirm('Seguro que desea cambiar la fecha de entrega?');
+                                        if ($('#ModalFecha').val() === "") {
+                                            alert('Falta la fecha');
+                                            return false;
+                                        } else {
+                                            if (valida) {
+                                                $('#F_FecEnt').val($('#ModalFecha').val());
+                                                alert($('#F_FecEnt').val($('#ModalFecha').val()));
+                                                $('#formCambioFechas').submit();
+                                            } else {
+                                                return false;
+                                            }
+                                        }
+                                    }
+
+
+        </script>
+        <script>
+            function habilitar(value) {
+                /*
+                 var fol1 = document.getElementById("folio1").value;
+                 var fol2 = document.getElementById("folio1").value;
+                 var fecha1 = document.getElementById("fecha_ini").value;
+                 var fecha2 = document.getElementById("fecha_fin").value; 
+                 
+                 if (fol1 !="" || fol2 !=""){
+                 document.getElementById("fecha_ini").disabled=true;
+                 document.getElementById("fecha_fin").disabled=true;            
+                 document.getElementById("fecha_ini").value="";
+                 document.getElementById("fecha_fin").value="";
+                 }else{
+                 document.getElementById("fecha_ini").disabled=false;
+                 document.getElementById("fecha_fin").disabled=false;
+                 
+                 }
+                 
+                 if (fecha1 !="" || fecha2 !=""){
+                 document.getElementById("folio1").disabled=true;
+                 document.getElementById("folio2").disabled=true;            
+                 document.getElementById("folio1").value="";
+                 document.getElementById("folio2").value="";
+                 }else{
+                 document.getElementById("folio1").disabled=false;
+                 document.getElementById("folio2").disabled=false;
+                 }*/
+
+                if (value == "si") {
+                    document.getElementById("fecha_ini").disabled = true;
+                    document.getElementById("fecha_fin").disabled = true;
+                    document.getElementById("folio1").disabled = false;
+                    document.getElementById("folio2").disabled = false;
+                    document.getElementById("fecha_ini").value = "";
+                    document.getElementById("fecha_fin").value = "";
+
+                } else if (value == "no") {
+                    document.getElementById("folio1").disabled = true;
+                    document.getElementById("folio2").disabled = true;
+                    document.getElementById("folio1").value = "";
+                    document.getElementById("folio2").value = "";
+                    document.getElementById("fecha_ini").disabled = false;
+                    document.getElementById("fecha_fin").disabled = false;
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                var availableTags = [
+            <%
+                  try {
+                      con.conectar();
+                      try {
+                          ResultSet rset = con.consulta("SELECT F_NomCli FROM tb_uniatn");
+                          while (rset.next()) {
+                              out.println("'" + rset.getString(1) + "',");
+                          }
+                      } catch (Exception e) {
+
+                      }
+                      con.cierraConexion();
+                  } catch (Exception e) {
+
+                  }
+            %>
+                ];
+                $("#NombreUnidad").autocomplete({
+                    source: availableTags
+                });
+            });
+        </script>
+    </body>
+</html>
+

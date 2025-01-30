@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marbeteSurtido" language="groovy" columnCount="2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="376" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cdf28c87-482c-48a9-a5a4-6179bb1e655f">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idFact" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	u.F_NomCli,
+	DATE_FORMAT(f.F_FecEnt, '%d/%m/%Y'),
+	l.F_ClaPro,
+	l.F_ClaLot,
+	DATE_FORMAT(l.F_FecCad, '%d/%m/%Y'),
+	(f.F_Cant+0) as F_Cant,
+	l.F_Ubica,
+	f.F_IdFact,
+	l.F_Cb,
+	p.F_Pzs,
+	(f.F_Cant DIV p.F_Pzs),
+	(f.F_Cant MOD p.F_Pzs),
+	m.F_DesPro,
+	l.F_IdLote,
+	f.F_Id
+FROM
+	tb_facttemp f,
+	tb_lote l,
+	tb_uniatn u,
+	tb_pzxcaja p,
+tb_medica m
+WHERE
+	f.F_IdLot = l.F_IdLote
+AND l.F_ClaPro = m.F_ClaPro
+AND f.F_ClaCli = u.F_ClaCli
+AND p.F_ClaPro = l.F_ClaPro
+AND F_IdFact = $P{idFact};]]>
+	</queryString>
+	<field name="F_NomCli" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DATE_FORMAT(f.F_FecEnt, &apos;%d/%m/%Y&apos;)" class="java.lang.String"/>
+	<field name="F_ClaPro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_ClaLot" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DATE_FORMAT(l.F_FecCad, &apos;%d/%m/%Y&apos;)" class="java.lang.String"/>
+	<field name="F_Cant" class="java.lang.Double"/>
+	<field name="F_Ubica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_IdFact" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Cb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Pzs" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="(f.F_Cant DIV p.F_Pzs)" class="java.lang.Long"/>
+	<field name="(f.F_Cant MOD p.F_Pzs)" class="java.lang.Double"/>
+	<field name="F_DesPro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_IdLote" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="281" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="24095a33-8ecb-4868-a3cb-14f83bf600cf" x="1" y="169" width="66" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Lote]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="654539d9-2504-4438-bbc0-1c923fa06a91" x="67" y="169" width="61" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Caducidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fa1d4d41-d807-42c2-83b0-aa43cf00671a" x="1" y="43" width="83" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Punto de entrega:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2528e0b7-1354-4683-9cde-cb9fc9f87770" x="128" y="169" width="68" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Ubicación]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="c1ca1a14-52ce-4512-8444-a31528999fe6" x="160" y="246" width="200" height="21"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{F_Id}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="20edd99d-3fde-46e4-9142-93c254f4ace6" x="196" y="169" width="74" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cajas]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2823fc7b-0a29-4cca-88bb-e4f2d5e0feb1" x="1" y="57" width="362" height="53"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaPro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c41ec14f-48ce-4c7f-8610-1953f2ef3ea8" x="84" y="43" width="279" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_NomCli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b30e958e-0b9c-4638-9aa4-c1c151c3356f" x="1" y="151" width="362" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_DesPro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b6feeff9-9f4d-406f-966d-4efb3ae77369" x="1" y="182" width="66" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaLot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6e29c550-1e2c-44aa-8bed-005c12f05a36" x="67" y="182" width="61" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATE_FORMAT(l.F_FecCad, '%d/%m/%Y')}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="406eee17-04e5-4e59-acaf-e324a2345bd8" x="128" y="182" width="68" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Ubica}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###,##0">
+				<reportElement uuid="9f69cd89-ee7e-40df-a01a-ca842ba06164" x="196" y="187" width="74" height="21"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{(f.F_Cant DIV p.F_Pzs)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a5004e1c-a0b8-411f-97f5-e266252849a4" x="284" y="169" width="79" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Resto]]></text>
+			</staticText>
+			<textField pattern="#,###,##0">
+				<reportElement uuid="5f8e1a92-b63f-4cb1-bfd9-b7dff3e4527c" x="284" y="187" width="79" height="21"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{(f.F_Cant MOD p.F_Pzs)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="92112b3b-bc78-4427-98f0-e175507a432b" x="8" y="208" width="120" height="29"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Total de Piezas:]]></text>
+			</staticText>
+			<textField pattern="#,###,##0">
+				<reportElement uuid="4c9d189a-5853-4f40-b50b-e84f2c9ffa2c" x="128" y="208" width="235" height="29"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Cant}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="619b270b-34d2-4819-be1e-411f59e02d08" x="19" y="2" width="344" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Marbete de Entrega]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="02239de7-3e8d-4c68-a5c5-82cce09a7bc8" x="372" y="0" width="1" height="273"/>
+			</line>
+			<line>
+				<reportElement uuid="65e4288d-6f78-4ff3-98a8-d22e7e23e5a7" x="0" y="273" width="372" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="84d79c3e-5876-4dc9-a490-402d73fcbe77" x="1" y="246" width="66" height="21"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Cod. ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0a474a67-6359-496d-9828-c8731d88b772" x="15" y="118" width="141" height="21"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Cod. Insumo]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="c0647fde-34c9-4755-a8a1-895434eb2496" x="156" y="118" width="200" height="21"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{F_ClaPro}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement uuid="3ce489cd-fc8e-4dbc-9635-00ed47ff06b9" x="67" y="246" width="93" height="21"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

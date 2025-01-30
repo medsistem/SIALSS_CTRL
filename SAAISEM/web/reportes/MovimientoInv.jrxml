@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d36d56d-e705-43d8-bec6-461dd4e714a4">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Folfact" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Mov" class="java.lang.String"/>
+	<parameter name="proyecto" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT CONCAT("Documento [ ",M.F_DocMov," ]") AS F_ClaDoc,CONCAT("Fecha [ ",DATE_FORMAT(M.F_FecMov,'%d/%m/%Y')," ]") AS F_FecEnt,
+CONCAT("[ ",M.F_ConMov," ] ",U.F_DesCon) AS F_NomCli,M.F_ProMov AS F_ClaPro,MD.F_DesPro,FORMAT(M.F_CantMov,0) AS F_CantSur,FORMAT(M.F_CostMov,2) AS F_Costo,FORMAT(M.F_TotMov,2) AS F_Monto,
+L.F_ClaLot,DATE_FORMAT(L.F_FecCad,'%d/%m/%Y') AS F_FecCad,O.F_Obser
+FROM tb_movinv M INNER JOIN tb_coninv U ON M.F_ConMov=U.F_IdCon
+INNER JOIN tb_medica MD ON M.F_ProMov=MD.F_ClaPro
+INNER JOIN tb_lote L ON M.F_LotMov=L.F_FolLot AND M.F_UbiMov=L.F_Ubica AND M.F_ProMov=L.F_ClaPro
+LEFT JOIN tb_obsmov O ON M.F_DocMov=O.F_IdFact
+WHERE F_DocMov=$P{Folfact} AND F_ConMov=$P{Mov} AND F_Proyecto = $P{proyecto}]]>
+	</queryString>
+	<field name="F_ClaDoc" class="java.lang.String"/>
+	<field name="F_FecEnt" class="java.lang.String"/>
+	<field name="F_NomCli" class="java.lang.String"/>
+	<field name="F_ClaPro" class="java.lang.String"/>
+	<field name="F_DesPro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_CantSur" class="java.lang.String"/>
+	<field name="F_Costo" class="java.lang.String"/>
+	<field name="F_Monto" class="java.lang.String"/>
+	<field name="F_ClaLot" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_FecCad" class="java.lang.String"/>
+	<field name="F_Obser" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="75">
+			<staticText>
+				<reportElement uuid="6be46b34-f50c-460a-a987-8357a2a33a47" x="188" y="0" width="184" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIALSS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="83580f10-239f-4474-871d-820c698eb6c9" x="90" y="-60" width="198" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[GNK Logística]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f3f783d6-b567-455e-879a-24dcd6525489" x="90" y="-60" width="198" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[GNK Logística]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9409d028-3f27-418c-88cc-9b4d57094ddf" x="188" y="13" width="184" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento Movimiento al Inventario]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="940e8add-a502-4690-9b7b-b6e9f03c2bfd" x="0" y="46" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="6f36e6e4-70ab-4b66-b3da-caaf3fd5ba47" x="155" y="30" width="244" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_FecEnt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b40b3b97-ec17-4621-be85-eb1ee0fcb023" x="0" y="47" width="100" height="10"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaDoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="df98ec4c-73c4-4a39-8862-3ff9a67e1e42" x="0" y="61" width="227" height="10"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Obser}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="50121826-4182-47bf-a629-411ffbbbddb6" x="145" y="47" width="326" height="10"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_NomCli}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="e31265f3-bc66-4e8e-a04c-6feb936e8b22" x="0" y="73" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="582122c5-36e3-4977-8205-6deebb0146a1" x="471" y="0" width="100" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss a">
+				<reportElement uuid="76ce7b93-a41f-4774-ad2d-aebf4bd9e1c8" x="471" y="13" width="100" height="17"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="12d419e7-dba8-43f6-8685-09d2ce3fc570" x="0" y="0" width="64" height="44"/>
+				<imageExpression><![CDATA["sialss.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16">
+			<staticText>
+				<reportElement uuid="3a65b5d0-d6b7-4996-9dff-621e0d180045" x="0" y="1" width="64" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Clave]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="3ea387a8-1af0-4f44-8913-b916ef8fd97f" x="0" y="15" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="ceec9380-762b-4b34-94bf-c8c458c6a69c" x="64" y="0" width="180" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a7e9d7aa-21b6-4747-9a43-c14469950920" x="244" y="1" width="60" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="030173f7-5030-431f-bf57-fe3e673077d9" x="358" y="1" width="60" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9f89caae-01b2-4eaa-b2fc-48278e79c824" x="418" y="1" width="77" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Lote]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1366ab2f-a92f-42d4-b0a0-dfffe10d78e8" x="495" y="1" width="76" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Fecha de Caducidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c86f6916-2d63-48fe-a432-cd5e39c3029a" x="306" y="1" width="52" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Costo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13">
+			<textField>
+				<reportElement uuid="8e8c58ef-7e73-49f6-bfe4-1c134630e138" x="0" y="2" width="64" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaPro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5651ab7a-c740-4f3f-9573-3c3fd4456c26" x="64" y="2" width="180" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_DesPro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="329f7d5f-4905-4824-a996-339fee0f0d31" x="244" y="2" width="60" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_CantSur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="28d753f5-8330-4247-95f9-59ecf6fc6fc3" x="358" y="2" width="60" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Monto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="61da94fb-b2ba-4a9e-aa11-9cd716673957" x="418" y="2" width="77" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaLot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="512112d1-907a-4517-8891-c9d6871c07f0" x="495" y="2" width="76" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_FecCad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c4b8a489-9226-4bff-ae46-ed1eb5597b38" x="306" y="2" width="52" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Costo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="26">
+			<textField>
+				<reportElement uuid="90da2b7c-eec7-43b6-bc78-a5f7ee2f0d56" mode="Opaque" x="155" y="13" width="130" height="13" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="0ebb5cf6-b2fa-4cab-bcb9-bb8195cf26a6" mode="Opaque" x="285" y="13" width="40" height="13" backcolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="SansSerif" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="501480a8-f97d-43b3-a4ee-38125a9dedb0" x="272" y="2" width="32" height="11"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f16d0705-efac-4809-a0a5-a32f33baa17c" x="0" y="0" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="21"/>
+	</summary>
+</jasperReport>

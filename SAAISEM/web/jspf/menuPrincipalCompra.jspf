@@ -1,0 +1,125 @@
+    <%-- any content can be specified here e.g.: --%>
+
+<%@ page pageEncoding="UTF-8" %>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span clss="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/SIALSS_CTRL/main_menuCompras.jsp">Inicio</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <%if (tipo.equals("13")){%>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Crear<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/crearOC.jsp">Crear OC</a></li>
+                        <!--
+                        <li><a href="/SIALSS_CTRL/cargarOC.jsp">Cargar OC</a></li>
+                        
+                        <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/capturaEnseres.jsp">Crear OC Enseres</a></li>
+                    -->
+                        </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ver OC<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/verFoliosMCompras.jsp">VER OC</a></li>
+                   
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proveedores<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/catalogoProveedor.jsp">Alta Proveedor</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/AdministraRemisionesCompras?Accion=ListaRemision">Administrar Remisiones</a></li>
+                        <li><a href="/SIALSS_CTRL/reimpresionCliente.jsp">Administrar Remisiones de Ingreso</a></li>
+                        <li><a href="/SIALSS_CTRL/facturacion/BackOrderList.jsp">Back Order List</a></li>
+                        <li><a href="/SIALSS_CTRL/facturacion/ConsultasMoviCompra.jsp">Consulta Movimientos</a></li>
+                         <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/hh/ExistenciaProyectoCompra.jsp">Existencias</a></li>
+                        <li><a href="/SIALSS_CTRL/Compras/existenciaCompras.jsp">Existencias disponibles</a></li>
+                        <li><a href="/SIALSS_CTRL/kardex/kardex.jsp">Kardex</a></li>
+                         <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/reportes/ReporteadorComprasM.jsp">Reporteador Estadística de Entrega</a></li>
+                        <li><a href="/SIALSS_CTRL/ReporteProveedor/ReporteFCompra.jsp">Reporte Fecha Proveedor</a></li>
+                        <li><a href="/SIALSS_CTRL/facturacion/ConsultasOCRecibo.jsp">Reporte OC</a></li>     
+                         <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/semaforoCompras.jsp">Semaforización</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a href="#" onclick="window.open('/SIALSS_CTRL/medicamento.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Catálogo de Medicamento</a></li>
+                        <li><a href="/SIALSS_CTRL/catalogoUnidadesCompras.jsp">Puntos de Entregas</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extraordinario<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/SIALSS_CTRL/capturaExtraordinario.jsp?Proyecto=2&DesProyecto=MICHOACAN&Campo=F_ProMichoacan">Capturar</a></li>
+                        <li><a href="/SIALSS_CTRL/facturacionManualExtra.jsp?Proyecto=2&DesProyecto=MICHOACAN&Campo=F_ProMichoacan">Facturar</a></li>
+                    </ul>
+                </li>
+             
+            </ul>
+            <%}else if (tipo.equals("14")){%>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/hh/ExistenciaProyectoConsulta.jsp">Existencias</a></li>
+                    </ul>
+                </li>
+               </ul> 
+                <%}else if (tipo.equals("24")){%>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/SIALSS_CTRL/reportes/ReporteadorComprasAuditoria.jsp">Reporteador de Entregas</a></li>
+                        <li class="divider"></li>
+                        
+                    </ul>
+                </li>
+                
+            </ul>
+            <%} else if (tipo.equals("27")) {%>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a href="/SIALSS_CTRL/hh/ExistenciaProyectoConsulta.jsp">Existencias disponibles</a></li>
+                        <li><a href="/SIALSS_CTRL/kardex/kardex.jsp">Kardex</a></li>
+                         <li><a href="/SIALSS_CTRL/reportes/ReporteadorCompras.jsp">Reporteador Estadística de Entrega</a></li>
+                    </ul>
+                </li>
+            </ul> 
+            <% }%>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> <%=usua%></a></li>
+                <li class="active"><a href="/SIALSS_CTRL/indexCompras.jsp"><span class="glyphicon glyphicon-log-out"></span></a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>

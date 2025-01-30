@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Marbete" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac5afa2b-dbeb-4948-9e26-5043590070db">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Lote" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Cadu" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cant" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="noCompra" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="copias" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="claPro" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CB" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT F_DesPro FROM  tb_medica where F_ClaPro=$P{claPro};]]>
+	</queryString>
+	<field name="F_DesPro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="3"/>
+	</title>
+	<columnHeader>
+		<band height="198">
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="5ea55e41-044f-472e-97ac-fca7391c0758" x="0" y="65" width="752" height="127"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="100"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{claPro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="055f32ec-6521-4891-bccf-62e9c1aa24b9" x="0" y="12" width="157" height="33"/>
+				<textElement>
+					<font fontName="SansSerif" size="25"/>
+				</textElement>
+				<text><![CDATA[N° COMPRA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31fb7bcd-49dd-4ba0-a352-382f9a4fe959" x="428" y="12" width="141" height="33"/>
+				<textElement>
+					<font fontName="SansSerif" size="25"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD:]]></text>
+			</staticText>
+			<textField pattern="###,###,###">
+				<reportElement uuid="b4a79e0e-72b2-4924-aa2c-4005d5aa8caa" x="569" y="12" width="183" height="33"/>
+				<textElement>
+					<font size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cant}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00000">
+				<reportElement uuid="54b51165-f604-4f7e-be2c-b6bac6318d66" x="157" y="12" width="235" height="33"/>
+				<textElement>
+					<font size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{noCompra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="293">
+			<staticText>
+				<reportElement uuid="5377696e-b599-4494-bc88-f8f4757b9a81" mode="Opaque" x="86" y="158" width="186" height="39" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a004ef0f-c7dc-438b-b2a5-39d4e95bcb9d" mode="Opaque" x="157" y="0" width="438" height="50" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="17645458-6049-4a01-adbe-bdd4f6608c0b" mode="Opaque" x="407" y="168" width="235" height="32" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CADUCIDAD:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="95ad4b3c-9cb9-4917-b03b-b33e480e735d" x="197" y="240" width="311" height="31"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$P{CB}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement uuid="a6471d98-408e-47e7-9f5e-c0230223547f" x="0" y="50" width="752" height="118"/>
+				<textElement>
+					<font size="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_DesPro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e3839ca8-cd49-4941-8aff-53362a3e472b" x="33" y="197" width="297" height="41"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Lote}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bc103005-89f8-4dfa-a1a8-292306a8d169" x="361" y="200" width="345" height="38"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Cadu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c90fa25e-a511-4365-8ddf-cda1647ce90d" x="197" y="271" width="311" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CB}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17"/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

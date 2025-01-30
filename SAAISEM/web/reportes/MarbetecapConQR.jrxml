@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Marbete" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac5afa2b-dbeb-4948-9e26-5043590070db">
+	<property name="ireport.zoom" value="1.4615378250000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT F_ClaPro,F_Despro AS F_Despro,F_ClaLot,DATE_FORMAT(F_FecCad,'%d/%m/%Y') as F_FecCad,F_Cb,F_Ptarima AS F_Pieza, DATE_FORMAT(curdate(),'%d/%m/%Y') as F_FechaEla FROM tb_marbetecap]]>
+	</queryString>
+	<field name="F_ClaPro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Despro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_ClaLot" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_FecCad" class="java.lang.String"/>
+	<field name="F_Cb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Pieza" class="java.lang.Integer"/>
+	<field name="F_FechaEla" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="3"/>
+	</title>
+	<detail>
+		<band height="504">
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a3cb6261-449f-435e-9c0e-c8eae8ef5f10" positionType="Float" x="21" y="256" width="392" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="31"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaLot}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="18a15e74-4323-4ef4-9fc0-05b21c86aacf" positionType="Float" x="420" y="256" width="273" height="40"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="31"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_FecCad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5377696e-b599-4494-bc88-f8f4757b9a81" positionType="Float" mode="Opaque" x="124" y="224" width="186" height="32" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a004ef0f-c7dc-438b-b2a5-39d4e95bcb9d" positionType="Float" mode="Opaque" x="162" y="114" width="438" height="26" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="17645458-6049-4a01-adbe-bdd4f6608c0b" positionType="Float" mode="Opaque" x="439" y="221" width="235" height="32" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CADUCIDAD:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="95ad4b3c-9cb9-4917-b03b-b33e480e735d" positionType="Float" x="5" y="365" width="311" height="31"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{F_Cb}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement uuid="a468b2c8-c0d2-4cd0-946d-f9e14770070d" positionType="Float" x="5" y="396" width="311" height="28"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Cb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="86bd9ec3-ec12-4aea-b8f0-6a98c9f9ea32" positionType="Float" x="5" y="140" width="752" height="64"/>
+				<textElement>
+					<font size="23"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Despro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="31fb7bcd-49dd-4ba0-a352-382f9a4fe959" positionType="Float" x="235" y="181" width="141" height="33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="20"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement uuid="05b34e54-71e4-47b5-8862-bd51f6c7eef7" positionType="Float" x="376" y="181" width="172" height="33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Pieza}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="5ea55e41-044f-472e-97ac-fca7391c0758" x="4" y="42" width="752" height="59"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="88" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaPro}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="36d36ad0-5bd7-45f1-8823-056df5e7cb2f" x="501" y="2" width="255" height="32"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0b469621-58be-40f2-8cce-82f8a837a6b4" x="345" y="2" width="70" height="33"/>
+				<textElement>
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CLAVE]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="18193c91-36d1-4daa-b76c-e072bba2f988" x="420" y="360" width="196" height="140"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+    new com.google.zxing.qrcode.QRCodeWriter().encode(
+        $F{F_ClaPro}+"|"+$F{F_ClaLot}+"|"+$F{F_FecCad}+"|"+$F{F_FechaEla},
+        com.google.zxing.BarcodeFormat.QR_CODE, 300, 300
+    )
+)]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

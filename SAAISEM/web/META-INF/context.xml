@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/SIALSS_CTRL">
+  <!--LOCAL-->
+ 
+  <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxIdle="3" maxTotal="8" name="jdbc/recepcion_sialss" password="S1!s5re3cEpt1onImr" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mariadb://127.0.0.1:3306/sialss_ctrl?rewriteBatchedStatements=true" username="recepcion_sialss" validationQuery="SELECT 1"/>
+  <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxIdle="3" maxTotal="8" name="jdbc/auditoria_sialss" password="S1!s5ad1toRi44$sIma" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mariadb://127.0.0.1:3306/sialss_ctrl?rewriteBatchedStatements=true" username="auditoria_sialss" validationQuery="SELECT 1"/>
+  <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxIdle="3" maxTotal="8" name="jdbc/almacen_sialss" password="S1!s5alM4c3n$aIml" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mariadb://127.0.0.1:3306/sialss_ctrl?rewriteBatchedStatements=true" username="almacen_sialss" validationQuery="SELECT 1"/>
+  <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxIdle="3" maxTotal="8" name="jdbc/facturacion_sialss" password="S1!s5faCt0r4cI0n$cIm1f" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mariadb://127.0.0.1:3306/sialss_ctrl?rewriteBatchedStatements=true" username="facturacion_sialss" validationQuery="SELECT 1"/>
+
+
+  <!--publico pruebas-->
+ <!--
+     <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxIdle="3" maxTotal="8" name="jdbc/recepcion_sialss" password="S1!s5re3cEpt1onImr" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.0.184:3306/sialss_ctrl?rewriteBatchedStatements=true" username="recepcion_sialss" validationQuery="SELECT 1"/>
+  <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxIdle="3" maxTotal="8" name="jdbc/auditoria_sialss" password="S1!s5ad1toRi44$sIma" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.0.184:3306/sialss_ctrl?rewriteBatchedStatements=true" username="auditoria_sialss" validationQuery="SELECT 1"/>
+  <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxIdle="3" maxTotal="8" name="jdbc/almacen_sialss" password="S1!s5alM4c3n$aIml" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.0.184:3306/sialss_ctrl?rewriteBatchedStatements=true" username="almacen_sialss" validationQuery="SELECT 1"/>
+  <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxIdle="3" maxTotal="8" name="jdbc/facturacion_sialss" password="S1!s5faCt0r4cI0n$cIm1f" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.0.184:3306/sialss_ctrl?rewriteBatchedStatements=true" username="facturacion_sialss" validationQuery="SELECT 1"/>
+   -->
+
+</Context>

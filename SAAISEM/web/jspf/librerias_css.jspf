@@ -1,0 +1,12 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<script>
+    var context = "${generalContext}";
+</script>
+<link href="${generalContext}/css/bootstrap.css" rel="stylesheet" />
+<link href="${generalContext}/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+<link href="${generalContext}/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="${generalContext}/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="${generalContext}/css/select2.css" rel="stylesheet" type="text/css"/>
+<link href="${generalContext}/css/sweetalert.css" rel="stylesheet" type="text/css"/>
+<title>SIALSS_CTRL</title>

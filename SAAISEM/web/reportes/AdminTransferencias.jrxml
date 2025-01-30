@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d36d56d-e705-43d8-bec6-461dd4e714a4">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Folfact" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	CONCAT(
+		'Documento [ ',
+		M.F_DocMov,
+		' ]'
+	) AS F_ClaDoc,
+	CONCAT(
+		'Fecha [ ',
+		DATE_FORMAT(M.F_FecMov, '%d/%m/%Y'),
+		' ]'
+	) AS F_FecEnt,
+	CONCAT(
+		'[ 60 , 9 ] SALIDA Y ENTRADA POR TRANSFERENCIA DEL PROYECTO ',
+		TP.F_DesProy,
+		' A ',
+		TP2.F_DesProy
+	) AS F_NomCli,
+	M.F_ProMov AS F_ClaPro,
+	MD.F_DesPro,
+	L.F_ClaLot,
+	DATE_FORMAT(L.F_FecCad, '%d/%m/%Y') AS F_FecCad,
+	(F_SigMov * M.F_CantMov) AS F_CantSur,
+	TP.F_Obs AS F_Obser
+FROM
+	tb_movinv M
+INNER JOIN tb_coninv C ON M.F_ConMov = C.F_IdCon
+INNER JOIN (
+	SELECT
+		T.F_Documento,
+		T.F_Obs,
+		P.F_Id,
+		P.F_DesProy
+	FROM
+		tb_tranferenciaproyecto T
+	INNER JOIN tb_proyectos P ON T.F_ProyectoIni = P.F_Id
+	WHERE
+		T.F_Documento = $P{Folfact}
+	GROUP BY
+		T.F_Documento
+) AS TP ON M.F_DocMov = TP.F_Documento
+INNER JOIN (
+	SELECT
+		T.F_Documento,
+		P.F_Id,
+		P.F_DesProy
+	FROM
+		tb_tranferenciaproyecto T
+	INNER JOIN tb_proyectos P ON T.F_ProyectoFin = P.F_Id
+	WHERE
+		T.F_Documento = $P{Folfact}
+	GROUP BY
+		T.F_Documento
+) AS TP2 ON M.F_DocMov = TP2.F_Documento
+INNER JOIN tb_lote L ON M.F_ProMov = L.F_ClaPro
+
+AND M.F_UbiMov = L.F_Ubica
+INNER JOIN tb_medica MD ON M.F_ProMov = MD.F_ClaPro
+WHERE
+	F_ConMov IN (60, 9)
+AND F_DocMov = $P{Folfact}
+GROUP BY
+	M.F_IdMov
+ORDER BY
+	M.F_ConMov DESC]]>
+	</queryString>
+	<field name="F_ClaDoc" class="java.lang.String"/>
+	<field name="F_FecEnt" class="java.lang.String"/>
+	<field name="F_NomCli" class="java.lang.String"/>
+	<field name="F_ClaPro" class="java.lang.String"/>
+	<field name="F_DesPro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_ClaLot" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_FecCad" class="java.lang.String"/>
+	<field name="F_CantSur" class="java.math.BigDecimal"/>
+	<field name="F_Obser" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="75">
+			<staticText>
+				<reportElement uuid="6be46b34-f50c-460a-a987-8357a2a33a47" x="188" y="0" width="184" height="13"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALMACEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="83580f10-239f-4474-871d-820c698eb6c9" x="90" y="-60" width="198" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[GNK Logística]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f3f783d6-b567-455e-879a-24dcd6525489" x="90" y="-60" width="198" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[GNK Logística]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9409d028-3f27-418c-88cc-9b4d57094ddf" x="188" y="13" width="184" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento Movimiento al Inventario]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="940e8add-a502-4690-9b7b-b6e9f03c2bfd" x="0" y="46" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="6f36e6e4-70ab-4b66-b3da-caaf3fd5ba47" x="228" y="25" width="100" height="14"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_FecEnt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b40b3b97-ec17-4621-be85-eb1ee0fcb023" x="0" y="47" width="100" height="10"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaDoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="df98ec4c-73c4-4a39-8862-3ff9a67e1e42" x="0" y="61" width="227" height="10"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Obser}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="50121826-4182-47bf-a629-411ffbbbddb6" x="100" y="47" width="471" height="10"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_NomCli}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="e31265f3-bc66-4e8e-a04c-6feb936e8b22" x="0" y="73" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField pattern="EEEEE, dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement uuid="582122c5-36e3-4977-8205-6deebb0146a1" x="471" y="0" width="100" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss a">
+				<reportElement uuid="76ce7b93-a41f-4774-ad2d-aebf4bd9e1c8" x="471" y="13" width="100" height="17"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="7ea82806-1aec-42d6-8250-2f0d0a6306d2" x="0" y="0" width="84" height="30"/>
+				<imageExpression><![CDATA["image/sialss.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16">
+			<staticText>
+				<reportElement uuid="3a65b5d0-d6b7-4996-9dff-621e0d180045" x="6" y="1" width="45" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Clave]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="3ea387a8-1af0-4f44-8913-b916ef8fd97f" x="0" y="15" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="ceec9380-762b-4b34-94bf-c8c458c6a69c" x="84" y="0" width="44" height="12"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a7e9d7aa-21b6-4747-9a43-c14469950920" x="535" y="1" width="37" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9f89caae-01b2-4eaa-b2fc-48278e79c824" x="336" y="1" width="19" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Lote]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1366ab2f-a92f-42d4-b0a0-dfffe10d78e8" x="382" y="1" width="76" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Fecha de Caducidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13">
+			<textField>
+				<reportElement uuid="8e8c58ef-7e73-49f6-bfe4-1c134630e138" x="0" y="2" width="74" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaPro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5651ab7a-c740-4f3f-9573-3c3fd4456c26" x="64" y="2" width="224" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_DesPro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="329f7d5f-4905-4824-a996-339fee0f0d31" x="501" y="2" width="54" height="11"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_CantSur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="61da94fb-b2ba-4a9e-aa11-9cd716673957" x="322" y="2" width="60" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaLot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="512112d1-907a-4517-8891-c9d6871c07f0" x="393" y="2" width="53" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_FecCad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="26">
+			<textField>
+				<reportElement uuid="90da2b7c-eec7-43b6-bc78-a5f7ee2f0d56" mode="Opaque" x="155" y="13" width="130" height="13" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="0ebb5cf6-b2fa-4cab-bcb9-bb8195cf26a6" mode="Opaque" x="285" y="13" width="40" height="13" backcolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="SansSerif" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="501480a8-f97d-43b3-a4ee-38125a9dedb0" x="272" y="2" width="32" height="11"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f16d0705-efac-4809-a0a5-a32f33baa17c" x="0" y="0" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="21"/>
+	</summary>
+</jasperReport>

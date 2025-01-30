@@ -1,0 +1,18 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%@include file="static.jspf" %>
+<%
+    HttpSession sesion = request.getSession();
+    
+    String usua = "", tipo = "", ingreso = "";
+    
+    if (sesion.getAttribute("nombre") == null) {
+        response.sendRedirect(generalContext+"/index.jsp");
+        return;
+    }
+    
+    usua = (String) sesion.getAttribute("nombre");
+    tipo = (String) sesion.getAttribute("Tipo");
+    ingreso = (String) sesion.getAttribute("tipoIngreso");
+ 
+%>

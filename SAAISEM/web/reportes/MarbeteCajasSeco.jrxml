@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Marbetecajas" pageWidth="425" pageHeight="283" orientation="Landscape" columnWidth="385" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8d64405e-8bbb-489c-af6f-b4742ce7fcaf">
+	<property name="ireport.zoom" value="1.9965000000000035"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="4"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="documento" class="java.lang.String"/>
+	<parameter name="oc" class="java.lang.String"/>
+	<parameter name="remision" class="java.lang.String"/>
+	<parameter name="Imagen" class="java.lang.String"/>
+	<parameter name="ImgOrigen" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+cm.F_ClaDoc,
+cm.F_OrdCom,
+CASE
+WHEN cm.F_FolRemi is not null then cm.F_FolRemi
+ELSE cp.F_FolFac
+end as F_FolRemi,
+cm.F_Provee,
+cm.F_Marca,
+cm.F_Proyecto,
+cm.F_ClaPro,
+cm.F_DesPro,
+cm.F_ClaLot,
+cm.F_FecCad,
+cm.F_CB,
+cm.F_Pieza,
+cm.F_FechaEla,
+cm.F_Cajas,
+cm.F_PzCaja,
+cm.F_Resto,
+cm.F_CajasN,
+cm.F_Siglas,
+cm.F_Origen,
+cm.id,
+cp.F_UserIngreso,
+cp.F_FecCaptura,
+cp.F_HoraCaptura,
+cp.F_User,
+cp.F_FecApl,
+cp.F_Hora,
+CASE
+	WHEN a.F_ClaPro THEN "image/Nored_fria.jpg" /*"image/imgape.png"*/
+	WHEN c.F_ClaPro THEN "image/Nored_fria.jpg" /*"image/Controlado.jpg"*/
+	WHEN rf.F_ClaPro THEN "image/Nored_fria.jpg" /*"image/red_fria.jpg"*/
+	ELSE "image/Nored_fria.jpg"
+END as Tipo,
+IFNULL(cp.F_OrdenSuministro,"") as suministro
+FROM
+tb_cajasmarbetes AS cm
+LEFT JOIN tb_ape a ON cm.F_ClaPro = a.F_ClaPro
+LEFT JOIN tb_controlados c ON cm.F_ClaPro = c.F_ClaPro
+LEFT JOIN tb_redfria rf ON cm.F_ClaPro = rf.F_ClaPro
+INNER JOIN tb_compra cp ON  cp.F_ClaDoc =$P{documento} AND cp.F_OrdCom = $P{oc} AND cp.F_FolRemi = $P{remision}
+WHERE cm.F_ClaDoc = $P{documento} AND cm.F_OrdCom = $P{oc} AND cm.F_FolRemi = $P{remision} GROUP BY cm.id;]]>
+	</queryString>
+	<field name="F_ClaDoc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_OrdCom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_FolRemi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Provee" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Proyecto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_ClaPro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_DesPro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_ClaLot" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_FecCad" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_CB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Pieza" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_FechaEla" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Cajas" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_PzCaja" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Resto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_CajasN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Siglas" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Origen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tipo" class="java.lang.String"/>
+	<field name="suministro" class="java.lang.String"/>
+	<field name="F_UserIngreso" class="java.lang.String"/>
+	<field name="F_FecCaptura" class="java.lang.String"/>
+	<field name="F_HoraCaptura" class="java.lang.String"/>
+	<field name="F_User" class="java.lang.String"/>
+	<field name="F_FecApl" class="java.lang.String"/>
+	<field name="F_Hora" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="231" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="6a3e93f8-e7de-4233-b45f-ffe9afd4f372" x="124" y="132" width="65" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Folio Ingresado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b43fb77f-88bc-484c-a28e-46ffe09831d8" x="124" y="158" width="53" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="aef734b0-6baa-4e82-b10d-38e7993906ab" x="177" y="158" width="114" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Marca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="216ef6ae-4e3a-416c-9bc8-af008acfcc37" x="114" y="204" width="34" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ingreso:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="96eec11d-d37a-4858-a121-8864e85c43fb" x="148" y="205" width="108" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_UserIngreso} + " " + $F{F_FecCaptura} + " " + $F{F_HoraCaptura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="feeada88-8392-405d-a494-9c1d5a196f48" x="73" y="0" width="218" height="50"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaPro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="933c68b6-d4c6-4804-8525-55fb74a80957" x="0" y="51" width="385" height="32"/>
+				<box leftPadding="0">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_DesPro}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c8ba644f-1d4d-43fd-9b87-d2ad4022e62b" x="161" y="83" width="140" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaLot}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8e17b574-0f97-46a6-b856-36bacffbe546" x="199" y="110" width="100" height="21"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_FecCad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="17752409-074b-4f23-b96f-da42d7f4a02e" style="table" mode="Transparent" x="301" y="113" width="84" height="80"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" size="60" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Siglas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f1aca9d1-566e-45a4-8be0-d6f5736cb2b6" x="191" y="132" width="83" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_ClaDoc}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle" isUsingCache="true">
+				<reportElement uuid="fb8e914c-33ee-4f54-b41b-03b68662ee93" positionType="Float" x="0" y="87" width="114" height="106"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+    new com.google.zxing.qrcode.QRCodeWriter().encode(
+        $F{F_ClaPro}+"|"+$F{F_ClaLot}+"|"+$F{F_FecCad}+"|"+$F{F_FechaEla}
+        +"|"+$F{F_CB}+"||"+$F{F_PzCaja}+"|"+$F{F_OrdCom}+"|"+$F{F_Marca}
+        +"|"+$F{F_Provee}+"|"+$F{F_DesPro}+"|"+$F{F_Origen},com.google.zxing.BarcodeFormat.QR_CODE, 300, 300
+    )
+)]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="dab87afa-ecb6-4e9c-ba54-20c8dc478f77" x="124" y="145" width="53" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fabricante:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="d6fff66f-ed1e-4f96-a6bd-4504db37a77a" stretchType="RelativeToBandHeight" x="177" y="144" width="124" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Provee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f0f005bc-bb7b-467f-be8c-8224d11329ae" x="291" y="16" width="94" height="34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_CajasN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9d0659f5-30ab-43b0-bd1e-27bbe89fc34a" x="0" y="0" width="73" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Piezas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7452816f-f63e-4107-99f1-49cb8811d1a2" x="291" y="0" width="94" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cajas]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="736fd507-7cb8-4ec4-9a4b-57cf8ee9f79b" x="0" y="16" width="73" height="34"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_PzCaja}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="a6ce3fd3-eb6a-4fdc-82b5-a0d9adb4a403" mode="Opaque" x="350" y="87" width="24" height="22"/>
+				<imageExpression><![CDATA[$F{Tipo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="f474f107-3be4-4806-a7c2-a9ebe2f4c858" x="124" y="83" width="33" height="26"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Lote:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2daf7050-85c0-4709-902c-67f228ca8441" x="124" y="111" width="75" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Caducidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7a1d07e7-60d5-45cd-8e01-a33b7a3eb20e" x="0" y="193" width="114" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Origen:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="135205eb-81da-4252-998c-7c7ec32d8c56" x="0" y="205" width="114" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Black" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_Origen}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fb458f59-3756-4534-b03f-a6bd3479c122" x="124" y="171" width="53" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remision:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="42f87687-bf8d-4310-aa24-59eff9d1cb4e" x="177" y="171" width="114" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_FolRemi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1331ceef-2173-4987-8250-f52db608d288" x="115" y="216" width="33" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liberación:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="6e95aab7-d5e2-4b9a-aa32-ae7783a03ae7" x="148" y="216" width="108" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_User} + " " + $F{F_FecApl} + " " + $F{F_Hora}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement uuid="58ea71e5-935e-4c44-9179-584c57cd4969" positionType="Float" x="256" y="201" width="129" height="30"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{F_CB}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="6f9b133a-ce0b-4859-8866-a2a0ceebaf2d" mode="Opaque" x="311" y="87" width="24" height="22"/>
+				<imageExpression><![CDATA[$P{ImgOrigen}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

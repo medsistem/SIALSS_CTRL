@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CompraEnseres" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aee057c5-dfb4-40ad-a0a5-49cc0c8c1e44">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="folcom" class="java.lang.String"/>
+	<parameter name="F_OrdCom" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT C.F_FechaCaptura, C.F_ClaDoc, C.F_Oc, P.F_Proveedor, E.F_Insumos, C.F_Cantidad FROM tb_enserescompra C INNER JOIN tb_enseres E ON C.F_IdEnseres = E.F_Id INNER JOIN tb_enseresproveedor P ON C.F_IdProvee = P.F_Id WHERE C.F_Oc = $P{F_OrdCom} AND F_ClaDoc = $P{folcom};]]>
+	</queryString>
+	<field name="F_FechaCaptura" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_ClaDoc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Oc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Proveedor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Insumos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_Cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="F_Cantidad_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{F_Cantidad}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fc9185f5-f847-490a-b55e-7c047a771620" x="194" y="17" width="160" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[SIALSS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ee0a074-4436-4f57-b242-f295dd4a6416" x="354" y="48" width="116" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[RECEPCIÓN No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e3e83973-f6dc-43af-a5c9-23cf0e3f56a5" x="354" y="64" width="116" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[FECHA INGRESO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f62b764d-8563-4198-982f-f71d646b4164" x="354" y="32" width="116" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[ORDEN DE COMPRA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4ca24f31-b354-408f-a07b-a6c25cda5ff9" x="472" y="48" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F_ClaDoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="070cde99-33ec-4b8c-bf77-f545c4cec64e" x="472" y="32" width="100" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F_Oc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="70e1b3cc-09a8-4409-a0fc-d3366c441dca" x="472" y="64" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F_FechaCaptura}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="aed8dc29-94ca-4123-b513-02eae775a534" x="0" y="32" width="70" height="15"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[PROVEEDOR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b1644c90-f570-426f-8a7c-345bc6f8ed99" x="70" y="32" width="251" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F_Proveedor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="30db49c0-b741-40cc-a3c3-72bc93d80fb5" x="0" y="79" width="194" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Enseres]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="1d74f54b-3426-4649-aef6-1feb7f869698" x="0" y="92" width="572" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="e389697c-da8e-47ca-b739-77509b7e2176" x="391" y="79" width="100" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement uuid="7b334334-f654-4692-9b19-70c09cf5428f" x="0" y="0" width="258" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F_Insumos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="953d6ed3-e930-4c6c-845c-a19764d8f9ad" x="411" y="0" width="80" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F_Cantidad}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="5a1527e8-283c-4123-9177-a5d6e02decd4" x="0" y="14" width="572" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement uuid="94b76b27-a116-497e-bc57-47b373f18ade" mode="Opaque" x="12" y="3" width="513" height="13" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="52a9e404-a940-410b-a3c7-dd6e58de3390" mode="Opaque" x="532" y="3" width="40" height="13" backcolor="#FFFFFF"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement uuid="4a774658-75df-47e2-9163-5f5b77fb2166" x="413" y="0" width="77" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{F_Cantidad_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2766ec31-f331-42ac-8798-e0aace8fcde5" x="206" y="0" width="194" height="14"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
