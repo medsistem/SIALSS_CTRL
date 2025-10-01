@@ -11,7 +11,7 @@ package com.gnk.dao;
  */
 public interface ProcesarRequerimientoDao {
 
-    public boolean ConfirmarRequerimiento(String Usuario, String Folio, String Unidad, String ClaCli);
+    public boolean ConfirmarRequerimiento(String Usuario,  String Unidad, String ClaCli, int Tipo, String fecha);
     
     public boolean actualizaRequerimiento(int id, int cantidad);
     

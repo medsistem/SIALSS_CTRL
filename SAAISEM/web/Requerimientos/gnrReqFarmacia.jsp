@@ -30,22 +30,24 @@
     }
     ConectionDB con = new ConectionDB();
 
-    String fol_gnkl = "", Unidad = "";
+    String fol_sialss = "", Unidad = "", Fecha = "";
     int Sts = 0;
     try {
-        fol_gnkl = request.getParameter("fol_gnkl");
+        fol_sialss = request.getParameter("fol_sialss");
         Unidad = request.getParameter("Unidad");
+        Fecha = request.getParameter("Fecha");
 
     } catch (Exception e) {
 
     }
-    if (fol_gnkl == null) {
-        fol_gnkl = "";
+    if (fol_sialss == null) {
+        fol_sialss = "";
 
     }
 
+    System.out.println("Fecha de descarga: ");
     response.setContentType("application/vnd.ms-excel");
-    response.setHeader("Content-Disposition", "attachment;filename=\"ReqFarmacia_" + request.getParameter("fol_gnkl") + ".xls\"");
+    response.setHeader("Content-Disposition", "attachment;filename=\"ReqFarmacia_" + request.getParameter("fol_sialss") + "-"+Fecha+".xls\"");
 %>
 <html>
     <head>
@@ -54,12 +56,14 @@
     </head>
     <body>
         <div>
-            <h4>Folio del Requerimiento: <%=request.getParameter("fol_gnkl")%></h4>
+            <h4>Clave Unidad: <%=request.getParameter("fol_sialss")%></h4>
             <%
                 try {
                     con.conectar();
 
-                    ResultSet rset = con.consulta("SELECT U.F_NomCli, SUM(R.requerido) AS requerido FROM requerimiento_lodimed R INNER JOIN tb_uniatn U ON R.clave_unidad = U.F_IdReporte WHERE R.clave_unidad = '" + Unidad + "' AND R.folio = '" + request.getParameter("fol_gnkl") + "';");
+                    //ResultSet rset = con.consulta("SELECT U.F_NomCli, SUM(R.requerido) AS requerido FROM requerimiento_lodimed R INNER JOIN tb_uniatn U ON R.clave_unidad = U.F_IdReporte WHERE R.clave_unidad = '" + Unidad + "' AND R.folio = '" + request.getParameter("fol_sialss") + "';");
+                   ResultSet rset = con.consulta("SELECT  ua.F_NomCli, SUM(ur.F_Solicitado) FROM tb_unireq ur INNER JOIN tb_uniatn ua ON ua.F_ClaCli = ur.F_ClaUni WHERE ur.F_ClaUni = '" + Unidad + "' and ur.F_Status in (0,5) GROUP BY ur.F_ClaUni ORDER BY ur.F_FecCarg, ur.F_ClaUni; ");
+                   
                     while (rset.next()) {
             %>
             <h4>Nombre Unidad: <%=rset.getString(1)%></h4>
@@ -79,9 +83,13 @@
                     <table class="table table-bordered table-striped" id="datosCompras" border="1">
                         <thead>
                             <tr>
-                                <td>Clave</td>
-                                <td>Descripcion</td>
-                                <td>Cant. Req.</td>
+                                <th>Clave Unidad</th>
+                                <th>Nombre Unidad</th>
+                                <th>Fecha Cargo</th>
+                                <th>Clave</th>
+                                <th>Solicitado</th>
+                                <th>Fecha Entrega</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -89,18 +97,21 @@
                                 try {
                                     con.conectar();
                                     try {
-                                        String query ="SELECT R.clave, IFNULL(M.F_DesPro,'**'), SUM(R.requerido) AS requerido FROM requerimiento_lodimed R LEFT JOIN tb_medica M ON R.clave COLLATE utf8_general_ci = M.F_ClaPro WHERE R.requerido > 0 AND R.folio = '" + request.getParameter("fol_gnkl") + "' AND R.clave_unidad = '" + Unidad + "' GROUP BY R.clave;";
-                                        ResultSet rset = con.consulta(query);
+                                        String query ="SELECT  ur.F_ClaUni, ua.F_NomCli,ur.F_FecCarg,ur.F_ClaPro,ur.F_Solicitado,ur.F_Fecha FROM tb_unireq ur INNER JOIN tb_uniatn ua ON ua.F_ClaCli = ur.F_ClaUni WHERE ur.F_ClaUni = '" + Unidad + "' and ur.F_Status in (0,5) AND ur.F_Fecha = '"+Fecha+"'  ORDER BY ur.F_FecCarg, ur.F_ClaUni; ";
+                                      ResultSet rset = con.consulta(query);
                                         while (rset.next()) {
                                             String des = rset.getString(2);
-                                            if(des.compareTo("**")==0){
-                                                des= "style='background-color: #F7412B;'";
-                                            }
+                                          //  if(des.compareTo("**")==0){
+                                           //     des= "style='background-color: #F7412B;'";
+                                          //  }
                             %>
-                            <tr <%=des%>>
+                            <tr >
                                 <td style="mso-number-format:'@';"><%=rset.getString(1)%></td>
                                 <td><%=rset.getString(2)%></td>
                                 <td><%=rset.getString(3)%></td>
+                                <td><%=rset.getString(4)%></td>
+                                <td><%=rset.getString(5)%></td>
+                                <td><%=rset.getString(6)%></td>
                             </tr>
                             <%
                                         }

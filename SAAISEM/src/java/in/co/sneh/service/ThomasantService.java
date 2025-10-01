@@ -31,8 +31,12 @@ import org.apache.http.util.EntityUtils;
  */
 public class ThomasantService {
 
-    private final String urlIsem = "https://isem.thomasant.com.mx/thomasant/concentrate/attended";
-    private final String urlMerida = "https://merida.thomasant.com.mx/thomasant/concentrate/attended";
+    private final String urlIsem = "https://issemym.thomasant.com.mx/thomasant/concentrate/attended"; //pruebas
+    private final String urlMerida = "https://issemym.thomasant.com.mx/thomasant/concentrate/attended"; //pruebas
+    
+    
+//    private final String urlIsem = "https://isem.thomasant.com.mx/thomasant/concentrate/attended";
+//    private final String urlMerida = "https://merida.thomasant.com.mx/thomasant/concentrate/attended";
 
     private final ConectionDB c;
     private FacturaDAOImpl facturaDao;

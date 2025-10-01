@@ -28,6 +28,9 @@ public class ProcesarRequerimientoDaoImpl implements ProcesarRequerimientoDao {
     public static final String INSERTA_REQUERIMIENTO = "INSERT INTO tb_unireq VALUES(?,?,0,?,curdate(),0,0,?,?,?);";
 
     public static final String ACTUALIZA_REQUERIMIENTO = "UPDATE tb_unireq SET F_Status = ? WHERE F_ClaUni = ? AND F_Status = ?;";
+    
+    public static final String ACTUALIZA_REQUERIMIENTO_CLAVE= "UPDATE tb_unireq SET F_Status = ? WHERE F_IdReq = ? ;";
+
 
     public static final String ELIMINA_REQUERIMIENTO = "DELETE FROM tb_unireq WHERE F_ClaUni = ? AND F_Status = ?;";
 
@@ -38,91 +41,60 @@ public class ProcesarRequerimientoDaoImpl implements ProcesarRequerimientoDao {
     public static final String ACTUALIZA_STS = "UPDATE requerimiento_lodimed SET estatus = 'PROCESADO' WHERE clave_unidad = ? AND folio = ?;";
 
     public static String updateCantidad = "UPDATE requerimiento_lodimed SET requerido = ? WHERE id= ?";
+    
+    public static String Busca_clave = "SELECT ur.F_IdReq, ur.F_ClaUni, ur.F_ClaPro,ur.F_Status, CASE WHEN IFNULL( ctr.F_ClaPro, '' ) THEN '4' WHEN IFNULL( ape.F_ClaPro, '' ) THEN '3' WHEN IFNULL( rf.F_ClaPro, '' ) THEN '2' ELSE '1' END as TipoMed FROM tb_unireq ur INNER JOIN tb_uniatn ua ON ua.F_ClaCli = ur.F_ClaUni INNER JOIN tb_tipunidad tu ON ua.F_Tipo = tu.F_idTipUni LEFT JOIN tb_controlados ctr ON ur.F_ClaPro = ctr.F_ClaPro LEFT JOIN tb_ape ape ON ur.F_ClaPro = ape.F_ClaPro LEFT JOIN tb_redfria rf ON ur.F_ClaPro = rf.F_ClaPro WHERE ua.F_StsCli = 'A' AND ur.F_ClaUni = ? AND ur.F_Status = ? AND ur.F_Fecha = ?  GROUP BY TipoMed, F_ClaPro HAVING TipoMed = ? ORDER BY F_ClaPro";
 
     private final ConectionDBTrans con = new ConectionDBTrans();
     private PreparedStatement psBuscaRequerimiento;
     private PreparedStatement PsInsertarReq;
     private PreparedStatement PsActualizaReq;
     private PreparedStatement PsDatos;
+    private PreparedStatement PsBusca_clave;
+    
     private ResultSet rsRequerimiento;
     private ResultSet rsDatos;
+    private ResultSet rsBusca_clave;
 
     @Override
-    public boolean ConfirmarRequerimiento(String Usuario, String Folio, String Unidad, String ClaCli) {
+    public boolean ConfirmarRequerimiento(String Usuario,  String Unidad, String ClaCli, int Tipo, String Fecha) {
         boolean save = false;
+        int idfact = 0;
 
         try {
-            int CantidadReq = 0, CantidadReg = 0;
+          
             con.conectar();
             con.getConn().setAutoCommit(false);
 
-            PsActualizaReq = con.getConn().prepareStatement(ACTUALIZA_REQUERIMIENTO);
-            PsActualizaReq.setInt(1, 1);
-            PsActualizaReq.setString(2, ClaCli);
-            PsActualizaReq.setInt(3, 0);
-            PsActualizaReq.execute();
+             System.out.println("Usuario: " + Usuario);
+            System.out.println("Unidad: " + Unidad);
+            System.out.println("ClaCli: " + ClaCli);
+            System.out.println("Tipo: " + Tipo);
+            System.out.println("Fecha: " + Fecha);
+            
+            PsBusca_clave = con.getConn().prepareStatement(Busca_clave);
+            PsBusca_clave.setString(1, ClaCli);
+            PsBusca_clave.setInt(2, 5);
+            PsBusca_clave.setInt(4, Tipo);
+            PsBusca_clave.setString(3, Fecha);
+           rsBusca_clave = PsBusca_clave.executeQuery();
+            
+             while (rsBusca_clave.next()) {
+                 
+                 idfact = rsBusca_clave.getInt(1);
+                 System.out.println("idfact" +idfact);
+                 System.out.println(rsBusca_clave.getInt(1));
+            PsActualizaReq = con.getConn().prepareStatement(ACTUALIZA_REQUERIMIENTO_CLAVE);
+            PsActualizaReq.setInt(1, 0);
+            PsActualizaReq.setInt(2, idfact);
+            PsActualizaReq.executeUpdate();
 
-            PsInsertarReq = con.getConn().prepareStatement(INSERTA_REQUERIMIENTO);
+             }
+ System.out.println(" PsActualizaReq: " + PsActualizaReq);
+            con.getConn().commit();
+            save = true;
+           
 
-            psBuscaRequerimiento = con.getConn().prepareStatement(BUSCA_DATOSREQ);
-            psBuscaRequerimiento.setString(1, Folio);
-            psBuscaRequerimiento.setString(2, Unidad);
-            System.out.println(psBuscaRequerimiento);
-            rsRequerimiento = psBuscaRequerimiento.executeQuery();
-            while (rsRequerimiento.next()) {
-                PsInsertarReq.setString(1, rsRequerimiento.getString(1));
-                PsInsertarReq.setString(2, rsRequerimiento.getString(2));
-                PsInsertarReq.setString(3, rsRequerimiento.getString(3));
-                PsInsertarReq.setString(4, rsRequerimiento.getString(4));
-                PsInsertarReq.setString(5, rsRequerimiento.getString(3));
-                PsInsertarReq.setString(6, rsRequerimiento.getString(5));
-//                System.out.println(PsInsertarReq);
-                PsInsertarReq.addBatch();
-            }
-
-            PsInsertarReq.executeBatch();
-
-            PsDatos = con.getConn().prepareStatement(CantRequerida);
-            PsDatos.setString(1, Folio);
-            PsDatos.setString(2, Unidad);
-            rsDatos = PsDatos.executeQuery();
-            while (rsDatos.next()) {
-                CantidadReq = rsDatos.getInt(1);
-            }
-            PsDatos.clearParameters();
-
-            PsDatos = con.getConn().prepareStatement(CantRegistrada);
-            PsDatos.setString(1, ClaCli);
-            PsDatos.setString(2, Folio);
-            rsDatos = PsDatos.executeQuery();
-            while (rsDatos.next()) {
-                CantidadReg = rsDatos.getInt(1);
-            }
-            PsDatos.clearParameters();
-
-            if (CantidadReg == CantidadReq) {
-
-                PsActualizaReq.clearParameters();
-                PsActualizaReq = con.getConn().prepareStatement(ACTUALIZA_STS);
-                PsActualizaReq.setString(1, Unidad);
-                PsActualizaReq.setString(2, Folio);
-                PsActualizaReq.execute();
-                save = true;
-                con.getConn().commit();
-            } else {
-                PsActualizaReq.clearParameters();
-                save = false;
-                PsActualizaReq = con.getConn().prepareStatement(ELIMINA_REQUERIMIENTO);
-                PsActualizaReq.setString(1, ClaCli);
-                PsActualizaReq.setInt(2, 0);
-                PsActualizaReq.execute();
-            }
-            PsInsertarReq.close();
-            rsRequerimiento.close();
-            psBuscaRequerimiento.close();
             PsActualizaReq.close();
-            PsDatos.close();
-            rsDatos.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(ProcesarRequerimientoDaoImpl.class.getName()).log(Level.SEVERE, String.format("m: %s, sql: %s", ex.getMessage(), ex.getSQLState()), ex);
@@ -142,6 +114,8 @@ public class ProcesarRequerimientoDaoImpl implements ProcesarRequerimientoDao {
         return save;
     }
 
+    
+    
     @Override
     public boolean actualizaRequerimiento(int id, int cantidad) {
         try {

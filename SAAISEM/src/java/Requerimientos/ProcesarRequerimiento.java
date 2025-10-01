@@ -83,13 +83,15 @@ public class ProcesarRequerimiento extends HttpServlet {
         String Folio = request.getParameter("Folio");
         String Unidad = request.getParameter("Unidad");
         String ClaCli = request.getParameter("ClaCli");
+        int Tipo = Integer.parseInt(request.getParameter("TipoMed"));
+        String Fecha = request.getParameter("Fecha");
         JSONObject json = new JSONObject();
 
         switch (accion) {
             case "ProcesarRequerimiento":{
                 json = new JSONObject();
                 ProcesarRequerimientoDao registrarequerimiento = new ProcesarRequerimientoDaoImpl();
-                boolean Registrarequerimiento = registrarequerimiento.ConfirmarRequerimiento(Usuario, Folio, Unidad, ClaCli);
+                boolean Registrarequerimiento = registrarequerimiento.ConfirmarRequerimiento(Usuario, Unidad, ClaCli, Tipo, Fecha);
                 json.put("msj", Registrarequerimiento);
                 out.print(json);
                 out.close();

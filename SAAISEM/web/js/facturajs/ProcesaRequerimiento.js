@@ -1,10 +1,12 @@
 function procesar(renglon) {
-    var Folio = $("#fol_gnkl_" + renglon).val();
+ // var Folio = $("#fol_sialss_" + renglon).val();
     var Unidad = $("#Unidad_" + renglon).val();
     var ClaCli = $("#ClaCli_" + renglon).val();
+    var TipoMed = $("#TipoMed_" + renglon).val();
+    var Fecha = $("#Fecha_"+ renglon).val();
 
     swal({
-        title: "¿Seguro de procesar el Requerimiento " + Folio + "?",
+        title: "¿Seguro de procesar el Requerimiento de la Unidad: " + ClaCli +" / "+ TipoMed+"?",
         text: "No podrás deshacer este paso...",
         type: "warning",
         showCancelButton: true,
@@ -18,7 +20,8 @@ function procesar(renglon) {
 
                 $.ajax({
                     url: "../ProcesarRequerimiento",
-                    data: {accion: "ProcesarRequerimiento", Unidad: Unidad, Folio: Folio, ClaCli: ClaCli},
+                 //   data: {accion: "ProcesarRequerimiento", Unidad: Unidad, Folio: Folio, ClaCli: ClaCli},
+                     data: {accion: "ProcesarRequerimiento", Unidad: Unidad, ClaCli: ClaCli, TipoMed: TipoMed, Fecha: Fecha},
                     type: 'POST',
                     dataType: 'JSON',
                     async: true,
@@ -255,10 +258,10 @@ function validarFiltros(){
     var fechaE2 = $("#fecha2").val();
     var fechaC1 = $("#fechaCap1").val();
     var fechaC2 = $("#fechaCap2").val();
-    var juris = $("#juris").val();
+   
     var unidad = $("#UnidadSe").val();
     
-    if((fechaE1 && fechaE2) && !fechaC1 && !fechaC2 && !juris && !unidad){
+    if((fechaE1 && fechaE2) && !fechaC1 && !fechaC2  && !unidad){
         swal({
             title: "No se puede filtrar solo por fechas de entrega, seleccione otro parámetro",
             text: "",

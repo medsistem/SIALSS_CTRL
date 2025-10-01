@@ -90,47 +90,40 @@
 			<staticText>
 				<reportElement uuid="7da0a11a-02f5-4927-a68c-cf6a6b561d0b" x="136" y="0" width="282" height="13"/>
 				<textElement textAlignment="Center">
-					<font fontName="Arial" size="10" isBold="true"/>
+					<font fontName="Arial" size="10" isBold="false"/>
 				</textElement>
-				<text><![CDATA[SIALSS]]></text>
+				<text><![CDATA[SIALSS FOLIO DE SURTIDO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="7204179a-c28a-40d7-998f-4c9f585bc9b0" x="0" y="33" width="62" height="30"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="10" isBold="true"/>
+					<font fontName="Arial" size="10" isBold="false"/>
 				</textElement>
 				<text><![CDATA[PROYECTO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="5847a454-968f-49f2-86e7-7b2051ce927f" x="62" y="34" width="74" height="32"/>
+				<reportElement uuid="5847a454-968f-49f2-86e7-7b2051ce927f" x="62" y="34" width="74" height="29"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="7" isBold="true"/>
+					<font fontName="Arial" size="7" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_Proyecto}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="e3f6c11c-610f-4690-bf0b-9a8364e5aa58" x="0" y="63" width="61" height="14"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[SURTIDO]]></text>
-			</staticText>
-			<staticText>
 				<reportElement uuid="411af5dc-a7fe-42f0-ad8c-082693abe01b" x="-1" y="77" width="62" height="13"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="8" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[JURISDICCIÓN:]]></text>
 			</staticText>
 			<textField>
 				<reportElement uuid="018afb33-34f2-4620-9602-85c0317015ec" x="61" y="77" width="213" height="13"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="8" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_Juris}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="db87c7a7-1383-47d3-8fab-f5ffbe024537" mode="Opaque" x="405" y="0" width="130" height="13" backcolor="#FFFFFF"/>
+				<reportElement uuid="db87c7a7-1383-47d3-8fab-f5ffbe024537" mode="Opaque" x="422" y="0" width="113" height="13" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="8" isBold="false"/>
 				</textElement>
@@ -147,30 +140,30 @@
 				<reportElement uuid="f0f01e19-e9ce-4044-987c-b08e37d15e34" x="441" y="46" width="132" height="20"/>
 			</rectangle>
 			<textField isStretchWithOverflow="true" pattern="00000">
-				<reportElement uuid="b02bb1b0-aed4-49c4-9bd2-651ce8ebfd63" x="493" y="24" width="72" height="11"/>
+				<reportElement uuid="b02bb1b0-aed4-49c4-9bd2-651ce8ebfd63" x="464" y="24" width="104" height="11"/>
 				<textElement textAlignment="Left">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="Arial" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_ClaDoc}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="6e4ef961-82d3-4098-a0a3-e7b200682ba3" mode="Opaque" x="449" y="24" width="42" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="6e4ef961-82d3-4098-a0a3-e7b200682ba3" mode="Opaque" x="422" y="24" width="42" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Right">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="Arial" size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[FOLIO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="9ae98375-69b1-4683-aa3f-2b775d000a0b" x="449" y="35" width="42" height="11"/>
+				<reportElement uuid="9ae98375-69b1-4683-aa3f-2b775d000a0b" x="422" y="34" width="42" height="11"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="Arial" size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[FECHA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="dfc4d60c-bc34-49ad-8e74-456452253399" x="493" y="35" width="75" height="11"/>
+				<reportElement uuid="dfc4d60c-bc34-49ad-8e74-456452253399" x="464" y="35" width="104" height="11"/>
 				<textElement textAlignment="Left">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="Arial" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_Elabo}]]></textFieldExpression>
 			</textField>
@@ -195,14 +188,14 @@
 				<text><![CDATA[FINAL HH]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="f19616d2-d486-4075-b541-bde04f77616d" x="136" y="35" width="282" height="31"/>
+				<reportElement uuid="f19616d2-d486-4075-b541-bde04f77616d" x="136" y="35" width="282" height="28"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="Arial" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_NomCli}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="2f044c95-15d4-4eda-b4b0-965a1fc5d1f2" x="84" y="66" width="352" height="12"/>
+				<reportElement uuid="2f044c95-15d4-4eda-b4b0-965a1fc5d1f2" x="84" y="63" width="352" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="6"/>
 				</textElement>
@@ -211,14 +204,14 @@
 			<staticText>
 				<reportElement uuid="d4aef0dc-a0e8-4534-8d11-eb5bdb8f688e" x="275" y="77" width="53" height="13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="8" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[MUNICIPIO:]]></text>
 			</staticText>
 			<textField>
 				<reportElement uuid="ab67efc0-6a49-4421-9f9f-f3286c493e71" x="326" y="77" width="170" height="12"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="8" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_Muni}]]></textFieldExpression>
 			</textField>
@@ -263,58 +256,51 @@ Toluca Lerma, Lerma de Villada, Estado de México, C.P. 52004]]></text>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="a85360bb-3a55-413f-9345-9584c482e1d1" mode="Opaque" x="370" y="1" width="35" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="a85360bb-3a55-413f-9345-9584c482e1d1" mode="Opaque" x="328" y="1" width="42" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="6" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REQ.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="729a5f94-6275-44c9-b30b-0086e34df464" mode="Opaque" x="0" y="1" width="55" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="729a5f94-6275-44c9-b30b-0086e34df464" mode="Opaque" x="0" y="1" width="97" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="6" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CLAVE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="5a343ae6-1482-4791-956e-ca2dd148213e" mode="Opaque" x="218" y="1" width="79" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="5a343ae6-1482-4791-956e-ca2dd148213e" mode="Opaque" x="97" y="1" width="121" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="6" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[LOTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="016474f9-e225-4473-b651-d344b7eae196" mode="Opaque" x="405" y="0" width="38" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="016474f9-e225-4473-b651-d344b7eae196" mode="Opaque" x="370" y="1" width="48" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="6" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ENT.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="bc85ff48-e824-4ab4-89e6-0351b4f2608e" mode="Opaque" x="443" y="1" width="29" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="bc85ff48-e824-4ab4-89e6-0351b4f2608e" mode="Opaque" x="422" y="1" width="29" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NO. DE CAJAS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="982b779e-763b-4ffc-8917-c254e6a1754d" mode="Opaque" x="299" y="1" width="67" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="982b779e-763b-4ffc-8917-c254e6a1754d" mode="Opaque" x="218" y="1" width="108" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="6" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CADUCIDAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="c06f8457-1c53-40f3-86a0-0aa148947854" mode="Opaque" x="55" y="1" width="162" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="5e63581f-e258-4911-a84d-20b5e0837413" mode="Opaque" x="456" y="1" width="112" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="6" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DESCRIPCIÓN]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="5e63581f-e258-4911-a84d-20b5e0837413" mode="Opaque" x="472" y="1" width="96" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="6" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[OBSERVACIONES]]></text>
 			</staticText>
@@ -327,65 +313,73 @@ Toluca Lerma, Lerma de Villada, Estado de México, C.P. 52004]]></text>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="28" splitType="Stretch">
+		<band height="52" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="3db6607c-9081-458c-8d6d-023db261b01b" style="table" x="218" y="0" width="79" height="25"/>
+				<reportElement uuid="3db6607c-9081-458c-8d6d-023db261b01b" style="table" x="97" y="0" width="121" height="25"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_ClaLot}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="405ff7b5-da82-49b4-9906-25126a7d1e3d" style="table" x="297" y="0" width="71" height="25"/>
+				<reportElement uuid="405ff7b5-da82-49b4-9906-25126a7d1e3d" style="table" x="218" y="0" width="108" height="25"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_FecCad}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="71a60289-7519-482b-b5bc-0abea340fc44" style="table" x="1" y="0" width="56" height="25"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement uuid="71a60289-7519-482b-b5bc-0abea340fc44" style="table" x="1" y="0" width="96" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 					<paragraph leftIndent="1"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_ClaPro}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###,###,###,##0">
-				<reportElement uuid="90089b60-9257-434f-95f0-d690d3e86b8a" style="table" x="370" y="0" width="35" height="25"/>
+				<reportElement uuid="90089b60-9257-434f-95f0-d690d3e86b8a" style="table" x="328" y="0" width="42" height="25"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_CantReq}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###,###,###,##0">
-				<reportElement uuid="9961e5b4-ac6e-4b8f-a1dd-7bd296e550ad" style="table" x="405" y="0" width="38" height="25"/>
+				<reportElement uuid="9961e5b4-ac6e-4b8f-a1dd-7bd296e550ad" style="table" x="370" y="0" width="48" height="25"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_CantSur}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="cea557c3-aa5e-4dcc-890c-76a40c8575d8" positionType="FixRelativeToBottom" x="0" y="27" width="572" height="1" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="cea557c3-aa5e-4dcc-890c-76a40c8575d8" positionType="FixRelativeToBottom" x="0" y="51" width="572" height="1" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="1.0"/>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="469d0e6c-4708-4cfb-b712-f29be5d3f4e7" style="table" stretchType="RelativeToBandHeight" x="57" y="0" width="160" height="25" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="469d0e6c-4708-4cfb-b712-f29be5d3f4e7" style="table" stretchType="RelativeToBandHeight" x="84" y="25" width="487" height="25" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="9"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{F_DesPro}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="ca10cdb4-80e7-4fa5-b1d0-763d21ba4adf" style="table" x="472" y="0" width="99" height="25"/>
+				<reportElement uuid="ca10cdb4-80e7-4fa5-b1d0-763d21ba4adf" style="table" x="451" y="0" width="120" height="25"/>
 				<textElement/>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="8f1f6a56-f586-452c-bd91-ee52a8c2775a" style="table" x="443" y="0" width="29" height="25"/>
+				<reportElement uuid="8f1f6a56-f586-452c-bd91-ee52a8c2775a" style="table" x="418" y="0" width="33" height="25"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="c06f8457-1c53-40f3-86a0-0aa148947854" style="table" mode="Opaque" x="1" y="25" width="83" height="25" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<pageFooter>
@@ -395,20 +389,24 @@ Toluca Lerma, Lerma de Villada, Estado de México, C.P. 52004]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[INF-DT-F01]]></text>
+				<text><![CDATA[INF-DT-F04]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
 		<band height="73">
 			<textField>
-				<reportElement uuid="485ced49-c58d-40f2-9b1e-3dda8f479fb2" positionType="Float" stretchType="RelativeToBandHeight" x="502" y="0" width="71" height="20" backcolor="#000000"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement uuid="485ced49-c58d-40f2-9b1e-3dda8f479fb2" style="table" positionType="Float" stretchType="RelativeToBandHeight" x="502" y="0" width="71" height="20" backcolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{TSurtido}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="d319d8eb-e71a-4e45-8dba-31036557530e" positionType="Float" stretchType="RelativeToBandHeight" x="402" y="0" width="100" height="20" backcolor="#000000"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement uuid="d319d8eb-e71a-4e45-8dba-31036557530e" style="table" positionType="Float" stretchType="RelativeToBandHeight" x="402" y="0" width="100" height="20" backcolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[TOTAL DE PIEZAS:]]></text>
 			</staticText>
 			<staticText>
