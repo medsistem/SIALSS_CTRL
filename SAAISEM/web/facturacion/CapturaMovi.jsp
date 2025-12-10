@@ -96,18 +96,18 @@
         <link rel="stylesheet" href="../css/cupertino/jquery-ui-1.10.3.custom.css" />
         <link href="../css/navbar-fixed-top.css" rel="stylesheet">
         <!---->
-        <title>SIALSS_CTRL</title>
+        <title>SIALSS IMSS</title>
     </head>
     <body onLoad="foco();">
         <div class="container">
-            <h1>SIALSS_CTRL</h1>
+            <h1>SIALSS</h1>
             <h4>Módulo - Sistema de Administración de Almacenes (SAA)</h4>
 
             <%@include file="../jspf/menuPrincipal.jspf" %>
 
             <div class="row">
                 <div class="col-sm-12">
-                    <h2>Captura Moviento al Inventario proyecto <%=Desproyecto%></h2>
+                    <h2>Captura Movimiento al Inventario proyecto <%=Desproyecto%></h2>
                 </div>
             </div>
             <hr/>
@@ -130,11 +130,11 @@
                     </div>
                     <div class="col-sm-5">
                         <select class="form-control" name="ClaCli" id="ClaCli">
-                            <option value="">-Seleccione Movimiento-</option>
+                            <option value="" >-Seleccione Movimiento-</option>
                             <%
                                 try {
                                     con.conectar();
-                                    ResultSet rset = con.consulta("SELECT F_IdCon,CONCAT('[',F_IdCon,']  ',F_DesCon) AS F_DesCon FROM tb_coninv WHERE  F_IdCon  IN (2,5,11,62,19,18,10,16,23,6,9,30,53,59,58,66,54,68,57,67,70,71,63,69,72);");
+                                    ResultSet rset = con.consulta("SELECT F_IdCon,CONCAT('[',F_IdCon,']  ',F_DesCon) AS F_DesCon FROM tb_coninv WHERE  F_IdCon  IN (11,62,19,18,2,10,16,23,6,9,30,53,59,58,66,54,68,57,67,70,71,63,69);");
                                     while (rset.next()) {
                             %>
                             <option value="<%=rset.getString(1)%>"
@@ -198,39 +198,26 @@
                                 <h4>Ingresé Cantidad:</h4>
                             </div>
                             <div class="col-sm-2">
-                                <input class="form-control" name="Cantidad" id="Cantidad" onKeyPress="return justNumbers(event);"/>
+                                <input class="form-control" name="Cantidad" id="Cantidad" onKeyPress="return justNumbers(event);" onpaste="return false"/>
                             </div>
+                            
                             <div class="col-sm-2">
                                 <button class="btn btn-block btn-info" name="accion" value="SeleccionaLoteTMovi" onclick="return validaSeleccionar();">Seleccionar</button>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-2">                                
-                                <h4>Selecciona Ubicación:</h4>
-                            </div>
-                            <div class="col-sm-2">
-                                <select id="UbicaN3" name="UbicaN3" class="form-control">
-                                    
-                                    <option value=""> </option>
-                                    
-                                </select>
-                                
-                            </div>    
-                            
-                        </div>
 
                     </div>
                 </div>
-                            <table class="table table-condensed table-striped table-bordered table-responsive" id="tablaMovimiento">
-                    <tr>
-                        <td>Clave</td>
-                        <td>Lote</td>
-                        <td>Caducidad</td>
-                        <td>Ubicación</td>
-                        <td>Marca</td>
-                        <td>Cantidad</td>
-                        <td>Remover</td>
-                    </tr>
+               <table class="table table-condensed table-striped table-bordered table-responsive" id="tablaMovimiento">
+                    <thead>
+                        <th class="text-center">Clave</th>
+                        <th class="text-center">Lote</th>
+                        <th class="text-center">Caducidad</th>
+                        <th class="text-center">Ubicación</th>
+                        <th class="text-center">Marca</th>
+                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Remover</th>
+                    </thead>
                     <%
                         int banBtn = 0;
                         try {

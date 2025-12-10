@@ -74,11 +74,11 @@
         <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css">
         <link href="css/navbar-fixed-top.css" rel="stylesheet">
         <!---->
-        <title>SIALSS_CTRL MOVI</title>
+        <title>SIALSS MOVI</title>
     </head>
     <body>
         <div class="container">
-            <h1>SIALSS_CTRL</h1>
+            <h1>SIALSS</h1>
             <h4>Módulo - Sistema de Administración de Almacenes (SAA)</h4>
             
             <%@include file="../jspf/menuPrincipal.jspf" %>
@@ -185,18 +185,18 @@
                 </div>
             </form>
             <table class="table table-condensed table-striped table-bordered table-responsive" id="movimien">
-                <tr>
-                    <td>Clave</td>
-                    <td>Origen</td>
-                    <td>Lote</td>
-                    <td>Caducidad</td>
-                    <td>Ubicación</td>
-                    <td>Cantidad</td>
-                    <td>Marca</td>
-                    <td>Proveedor</td>
-                    <td>Proyecto</td>
-                    <td>Seleccionar</td>
-                </tr>
+                <thead>
+                    <th class="text-center">Clave</th>
+                    <th class="text-center">Origen</th>
+                    <th class="text-center">Lote</th>
+                    <th class="text-center">Caducidad</th>
+                    <th class="text-center">Ubicación</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Marca</th>
+                    <th class="text-center">Proveedor</th>
+                    <th class="text-center">Proyecto</th>
+                    <th class="text-center">Seleccionar</th>
+               </thead>
                 <%
                     try {
                         ResultSet rset = null;

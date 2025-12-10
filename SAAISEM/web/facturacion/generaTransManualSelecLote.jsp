@@ -65,11 +65,11 @@
         <link rel="stylesheet" href="css/cupertino/jquery-ui-1.10.3.custom.css" />
         <link href="css/navbar-fixed-top.css" rel="stylesheet">
         <!---->
-        <title>SIALSS_CTRL</title>
+        <title>SIALSS IMSS</title>
     </head>
     <body>
         <div class="container">
-            <h1>SIALSS_CTRL</h1>
+            <h1>SIALSS</h1>
             <h4>Módulo - Sistema de Administración de Almacenes (SAA)</h4>
             
             <%@include file="../jspf/menuPrincipal.jspf" %>
