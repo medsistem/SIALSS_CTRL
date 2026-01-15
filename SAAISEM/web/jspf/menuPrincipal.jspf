@@ -28,7 +28,7 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span clss="icon-bar"></span>
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -99,7 +99,7 @@
                         <li class="divider"></li>
                         <li><a href="/SIALSS_CTRL/productotransferencia.jsp">Transferencias Productos</a></li>
                         <li class="divider"></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
+                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH (APAGADO)</a></li>
 
                     </ul>
                 </li>
@@ -115,7 +115,7 @@
                         <li><a href="/SIALSS_CTRL/CostosRemisiones?Accion=ListaRemision">Costos Remisiones</a></li>
                         <li class="divider"></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Marbetes Surtido</a></li>
+                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Marbetes Surtido (APAGADO)</a></li>
                         <li><a href="/SIALSS_CTRL/Marbetes/genMarbeteSur.jsp">Marbetes Surtido Juris (APAGADO)</a></li>
                         <li><a href="/SIALSS_CTRL/facturacion/cambioFechas.jsp">Multiples Remisiones / Recalendarizar</a></li>
                         <li class="divider"></li>
@@ -225,9 +225,9 @@
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
                          <!--
                        <li><a href="#"  onclick="window.open('/SIALSS_CTRL/modula/reabastecerModula.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Modula - Max - Min</a></li>
-                        -->
-                        <li class="divider"></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    
+                        
+                        <li class="divider"></li>-->
+                      <!--   <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    --> 
                         <li class="divider"></li>
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                        
@@ -289,7 +289,7 @@
                          <li><a href="#"  onclick="window.open('/SIALSS_CTRL/ordenesCompra.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Órdenes de Compras</a></li>
                         <li><a href="/SIALSS_CTRL/ordenesCompra/BajaOrdenCerrada.jsp">OC ENTREGADAS</a></li>
                        <li class="divider"></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
+                         <!--   <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    --> 
                         <li><a href="#" onclick="window.open('/SIALSS_CTRL/reimpresion.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Reimpresión de Remisiones</a></li>
                        <li class="divider"></li>
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/semaforo.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Semaforización</a></li>
@@ -352,7 +352,7 @@
                         <li><a href="/SIALSS_CTRL/captura.jsp">Entrada Manual</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
                         <li class="divider"></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
+                      <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
                         <li class="divider"></li>
                         <li><a href="/SIALSS_CTRL/kardex/kardex.jsp">Kardex Claves</a></li>
                         <li><a href="/SIALSS_CTRL/kardex/kardexPorDia.jsp">Kardex por día</a></li>
@@ -393,7 +393,7 @@
                         <li><a href="/SIALSS_CTRL/kardex/kardex.jsp">Kardex Claves</a></li>
                         <li><a href="/SIALSS_CTRL/kardex/kardexPorDia.jsp">Kardex por día</a></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
+                       <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
 
@@ -562,7 +562,7 @@
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultasCross.jsp">Ubicaciones</a></li>
                         <!--<li><a href="/SIALSS_CTRL/hh/leerInsRedistClaveCross.jsp">Redistribución HH</a></li>-->
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
+                        <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
                         <li><a href="/SIALSS_CTRL/kardex/kardex.jsp">Kardex Claves</a></li>
                         <li><a href="/SIALSS_CTRL/kardex/kardexPorDia.jsp">Kardex por día</a></li>
 
@@ -610,9 +610,8 @@
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
-                        <li class="divider"></li>
+                       <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
+                         <!--   <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    --> 
                         <!--
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/modula/avisosIngreso.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Modula - Avisos de Ingreso</a></li>
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/modula/reabastecerModula.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Modula - Max - Min</a></li>
@@ -683,7 +682,7 @@
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/kardex/kardex.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Kardex Claves</a></li>
                         <li><a href="/SIALSS_CTRL/kardex/kardexPorDia.jsp">Kardex por día</a></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
+                       <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/hh/ubicacionesConsultas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
 
@@ -730,7 +729,7 @@
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
+                         <!--   <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    --> 
 
                     </ul>
                 <li class="dropdown">
@@ -912,7 +911,7 @@
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/kardex/kardex.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Kardex Claves</a></li>
                         <li><a href="/SIALSS_CTRL/kardex/kardexPorDia.jsp">Kardex por día</a></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
+                        <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/hh/ubicacionesConsultas.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
                         <!--<li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>-->
@@ -988,7 +987,7 @@
                     <ul class="dropdown-menu">
 
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
+                      <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
 
                     </ul>
                 </li>
@@ -1011,7 +1010,7 @@
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
+                       <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
                         <li><a href="/SIALSS_CTRL/Reporte_incidencia.jsp">Reporte Incidencia Farmacia</a></li>
                         <li class="divider"></li>
                         <li><a href="/SIALSS_CTRL/Almacen/Proximos.jsp">Reporte Proximos a Caducar</a></li>
@@ -1169,10 +1168,9 @@
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
                         <li class="divider"></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
-                        <li class="divider"></li>
+                         <!--   <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    --> 
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
+                      <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
                     </ul>
                 </li>
 
@@ -1208,8 +1206,7 @@
                         <li><a href="/SIALSS_CTRL/kardex/kardexPorDia.jsp">Kardex por día</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
+                        <!--   <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    --> 
 
                     </ul>
                 </li>
@@ -1259,8 +1256,8 @@
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
+                       <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
+                         <!--   <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    --> 
                         <!--
                         <li class="divider"></li>
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/modula/avisosIngreso.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Modula - Avisos de Ingreso</a></li>
@@ -1341,8 +1338,8 @@
                         <li><a href="/SIALSS_CTRL/hh/ubicacionesConsultas.jsp">Ubicaciones</a></li>
                         <li><a href="/SIALSS_CTRL/hh/ExistenciaProyecto.jsp">Existencias por Proyecto</a></li>
                         <li><a href="/SIALSS_CTRL/marbete.jsp">Marbete Manual</a></li>
-                        <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>
-                        <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>
+                       <!--  <li><a href="/SIALSS_CTRL/Marbetes/genMarbete.jsp">Generar Marbetes Surtido</a></li>-->
+                         <!--   <li><a href="/SIALSS_CTRL/hh/insumoNuevoRedist.jsp">Redistribución HH</a></li>    --> 
                         <!--
                         <li class="divider"></li>
                         <li><a href="#"  onclick="window.open('/SIALSS_CTRL/modula/avisosIngreso.jsp', '', 'width=1200,height=800,left=50,top=50,toolbar=no')">Modula - Avisos de Ingreso</a></li>

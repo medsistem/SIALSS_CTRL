@@ -11,9 +11,11 @@ package com.gnk.dao;
  */
 public interface marbetesDao {
 
-    public String nombreUnidad(int folio, int Proyecto, int Cause);
+    public String nombreUnidad(int folio, int Proyecto);
 
-    public boolean insertar(String unidad, int folio, int marbetes, int Proyecto, String rutaParam, int Cause);
+    public boolean insertar(String unidad, int folio, int marbetes, int Proyecto, String rutaParam);
     
     public boolean insertarSur(String unidad, int folio, int marbetes, int Proyecto, String rutaParam);
+
+    //public String nombreUnidad(int folio, int Proyecto);
 }
