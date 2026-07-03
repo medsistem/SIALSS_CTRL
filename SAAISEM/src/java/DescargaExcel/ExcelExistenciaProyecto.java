@@ -332,7 +332,7 @@ public class ExcelExistenciaProyecto extends HttpServlet {
             String AND = "";
 
             if (Tipo.equals("Compras")) {
-                AND = " AND L.F_Ubica NOT IN ('CADUCADOS','MERMA','EXTRA_ORDINARIA') ";
+                AND = " AND L.F_Ubica NOT RLIKE 'CADUCADOS|MERMA|EXTRA_ORDINARIA|MRM|CDC' ";
             } else {
                 AND = "";
             }

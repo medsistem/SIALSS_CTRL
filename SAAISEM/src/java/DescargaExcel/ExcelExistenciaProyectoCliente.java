@@ -187,7 +187,7 @@ public class ExcelExistenciaProyectoCliente extends HttpServlet {
             String AND = "";
             if (Tipo.equals("Compra")) {
                 //AND = " AND L.F_Ubica NOT IN ('CADUCADOS','PROXACADUCAR','MERMA','EXTRA_ORDINARIA') AND L.F_FecCad > DATE_ADD(CURDATE(), INTERVAL 6 MONTH) ";
-                AND = " AND L.F_Ubica NOT IN ('CADUCADOS','MERMA','EXTRA_ORDINARIA') ";
+                AND = " AND L.F_Ubica NOT RLIKE 'CADUCADOS|MERMA|EXTRA_ORDINARIA|MRM|CDC' ";
             } else {
                 AND = "";
             }
